@@ -1,0 +1,7 @@
+.vscode
+
+src/public/css/
+node_modules/
+css/login.css
+js/validateemail.js
+login.html
