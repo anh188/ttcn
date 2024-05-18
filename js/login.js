@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (passwordField.type === 'password') {
         passwordField.type = 'text';
         icon.classList.remove('fa-solid', 'fa-eye');
-        icon.classList.add('bx', 'bx-low-vision');
+        icon.classList.add('fa-solid', 'fa-eye-slash');
       } else {
         passwordField.type = 'password';
-        icon.classList.remove('bx', 'bbx-low-vision');
+        icon.classList.remove('fa-solid', 'fa-eye-slash');
         icon.classList.add('fa-solid', 'fa-eye');
       }
     });

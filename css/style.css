@@ -91,9 +91,57 @@ button, input {
 }
 .search-container {
   padding: 15px;
-  justify-content: space-between;
-  align-items: center;
+  width: 250px;
+  height: 45px;
   text-align: center;
+  display: flex;
+  justify-content: center; /* căn chỉnh nội dung theo chiều ngang */
+  align-items: center; 
+  background: transparent;
+  border: 2px solid #030303;
+  border-radius: 6px;
+}
+
+.filter-container{
+  font-size: large; 
+}
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.search-container input{
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: #030303;
+  padding-left: 10px;
+}
+
+.search-container input::placeholder{
+  color: #c9c4c4;
+}
+
+.search-container button{
+  width: 40px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-container button i{
+  font-size: 22px;
+  color: #030303;
 }
 
 .menu {
@@ -135,20 +183,20 @@ button, input {
 .Thucvat{
   margin-bottom: 80px;
 }
-.gallery {
+#gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 30px;
 }
 
-.gallery a {
+#gallery a {
   display: block;
   text-align: center;
   text-decoration: none;
   color: #333;
 }
 
-.gallery img {
+#gallery img {
   max-width: 100%;
   height: auto;
   display: block;
@@ -158,11 +206,11 @@ button, input {
   transition: transform 0.3s ease;
 }
 
-.gallery img:hover {
+#gallery img:hover {
   transform: scale(1.05);
 }
 
-.gallery h3 {
+#gallery h3 {
   margin-top: 10px;
   font-size: 16px;
 }
