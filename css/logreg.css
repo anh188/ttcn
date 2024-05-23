@@ -134,15 +134,20 @@
 .text-sci h2{
   font-size: 70px;
   line-height: 1;
+  text-shadow: 2px 2px 20px rgba(0, 0.5, 1, 1);
+
 }
 
 .text-sci h2 span{
   font-size: 40px;
+  text-shadow: 2px 2px 20px rgba(0, 0.5, 1, 1);
+
 }
 
 .text-sci p{
   font-size: 20px;
   margin: 20px 0;
+  text-shadow: 2px 2px 20px rgba(0, 0.5, 1, 1);
 }
 
 .social-icon a i{
@@ -294,3 +299,4 @@
 .login-register p a:hover, .remember-forgot a:hover{
   text-decoration: none;
 }
+

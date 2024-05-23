@@ -55,97 +55,72 @@
     </div>
   
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const galleryContainer = document.getElementById('gallery');
-        const resultCount = document.getElementById('resultCount');
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('q') || sessionStorage.getItem('searchQuery');
+        
+        if (searchQuery) {
+          searchInput.value = searchQuery; // Hiển thị từ khóa trên thanh tìm kiếm
+          const url = `http://localhost:3456/flowers/?page=1&per_page=100&field=name&sort_order=asc&q=${encodeURIComponent(searchQuery)}`;
+          fetchData(url);
+        }
   
-        function fetchAndDisplayFlowers(query = '') {
-          let apiUrl = 'http://localhost:3456/flowers/?page=1&per_page=100&field=name&sort_order=asc';
-          if (query) {
-            apiUrl += `&q=${encodeURIComponent(query)}`;
-          }
-  
-          fetch(apiUrl)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Network response was not ok');
-              }
-              return response.json();
-            })
+        function fetchData(url) {
+          fetch(url)
+            .then(response => response.json())
             .then(data => {
               const flowers = data.data.flowers;
-              galleryContainer.innerHTML = ''; // Xóa thư viện hiện tại
-              let visibleCount = 0;
+              const galleryContainer = document.getElementById('gallery');
+              galleryContainer.innerHTML = ''; // Clear the gallery
   
-              if (flowers.length === 0) {
-                galleryContainer.innerHTML = '<p>Không tìm thấy kết quả nào.</p>';
-                resultCount.textContent = 'Số kết quả hiển thị: 0';
-                return;
-              }
-  
-              // Tạo phần tử cho mỗi cây và thêm vào galleryContainer
               flowers.forEach(flower => {
                 const div = document.createElement('div');
                 div.classList.add('gallery-item');
                 const a = document.createElement('a');
-                a.href = './details.html';
-                a.setAttribute('data-bo', flower.set_id.name);
-                a.setAttribute('data-ho', flower.surname_id.name);
-                a.setAttribute('data-kich-thuoc', flower.size);
+                a.href = '#'; // Placeholder href
   
                 const img = document.createElement('img');
-                img.src = flower.flower_images[0] || './asset/IMG_5148.JPG'; // Sử dụng hình ảnh mặc định nếu không có hình ảnh
-                // img.alt = flower.name;
+                img.src = flower.flower_images[0] || './asset/IMG_5148.JPG'; // Use default image if no image available
+                img.alt = flower.name;
   
                 const h3 = document.createElement('h3');
                 h3.textContent = flower.name;
+  
+                const span = document.createElement('span');
+                span.textContent = `(${flower.science_name})`; // Add scientific name in parentheses
+  
+                h3.appendChild(document.createElement('br')); // Add line break
+                h3.appendChild(span); // Append scientific name
   
                 a.appendChild(img);
                 a.appendChild(h3);
                 div.appendChild(a);
                 galleryContainer.appendChild(div);
-                visibleCount++;
+  
+                // Add click event listener
+                div.addEventListener('click', function(event) {
+                  event.preventDefault(); // Prevent the default link click behavior
+                  sessionStorage.setItem('selectedFlower', JSON.stringify(flower));
+                  window.location.href = './details.html';
+                });
               });
-  
-              resultCount.textContent = `Số kết quả hiển thị: ${visibleCount}`;
             })
-            .catch(error => {
-              console.error('Lỗi khi lấy dữ liệu:', error);
-              galleryContainer.innerHTML = '<p>Đã xảy ra lỗi khi tải dữ liệu.</p>';
-              resultCount.textContent = 'Số kết quả hiển thị: 0';
-            });
+            .catch(error => console.error('Error fetching data:', error));
         }
   
-        function handleSearch() {
-          const searchTerm = searchInput.value.trim();
-          if (searchTerm !== '') {
-            sessionStorage.setItem('searchTerm', searchTerm);
-            fetchAndDisplayFlowers(searchTerm);
-          }
-        }
-  
-        searchInput.addEventListener('keypress', function (event) {
+        // Thêm sự kiện để tìm kiếm lại nếu người dùng nhập từ khóa mới trong trang search.html
+        searchInput.addEventListener('keypress', function(event) {
           if (event.key === 'Enter') {
-            handleSearch();
+            const query = searchInput.value.trim();
+            if (query) {
+              sessionStorage.setItem('searchQuery', query); // Lưu từ khóa tìm kiếm vào sessionStorage
+              const url = `search.html?q=${encodeURIComponent(query)}`; // Cập nhật URL kèm query string
+              window.location.href = url;
+            }
           }
         });
-  
-        searchButton.addEventListener('click', function () {
-          handleSearch();
-        });
-  
-        searchInput.addEventListener('input', function () {
-          const searchTerm = this.value.trim();
-          if (searchTerm === '') {
-            fetchAndDisplayFlowers(); // Tải lại dữ liệu ban đầu khi ô tìm kiếm trống
-          }
-        });
-  
-        // Fetch initial data without search query
-        fetchAndDisplayFlowers();
       });
-    </script>
+  </script>
   </body>
   </html>

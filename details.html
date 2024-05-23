@@ -3,45 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi tiết thông tin cây</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="./css/detail.css">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/home.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="./css/home.css">
 </head>
 <body>
   <header class="header">
     <nav class="navbar">
       <a href="home.html">Trang chủ</a>
-      <a href="#">Giới thiệu</a>
-      <a href="#">Liên hệ</a>
+      <a href="contact.html">Giới thiệu</a>
+      <a href="contact.html">Liên hệ</a>
       <!-- <a href="#">Contact</a> -->
     </nav>
-      <a class="link-login" href="loginregister.html">Đăng nhập</a>
+      <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
   </header>
+
   <div class="details-container">
     <h1>Chi tiết thông tin cây</h1>
     <div class="details">
-      <div>
-        <img src="./asset/IMG_5148.JPG" alt="Vải" class="plant-image">
+      <div class="flower-images-container">
+        <div class="swiper mySwiper2">
+          <div class="swiper-wrapper" id="flowerImagesWrapper"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+        <div thumbsSlider="" class="swiper mySwiper">
+          <div class="swiper-wrapper" id="flowerImagesThumbs"></div>
+        </div>
       </div>
-      
       <div>
-        <p><strong>Tên khoa học:</strong> litchi chinensis</p>
-        <p><strong>Tên thường gọi:</strong> vải</p>
-        <p><strong>Bộ:</strong> Bộ bồ hòn</p>
-        <p><strong>Họ:</strong> họ bồ hòn</p>
-        <p><strong>Hình dạng phấn hoa:</strong> hình tam giác tròn</p>
-        <p><strong>Kích thước phấn hoa:</strong> 26 µm nhỏ</p>
-        <p><strong>Bề mặt phấn hoa:</strong> trơn tru hoặc không xác định</p>
-        <p><strong>Ảnh hạt phấn</strong></p>
-       <!-- <img src="./asset/Image-233_2024-04-19.jpg" alt=""> -->
-      <img src="./asset/Image-233_2024-04-19.jpg" alt="Vải" class="plant-image">
+        <p><strong>Tên thường gọi:</strong> <span id="tenThuongGoi"></span></p>
+        <p><strong>Tên khoa học:</strong> <span id="tenKhoaHoc"></span></p>
+        <p><strong>Kích thước phấn hoa:</strong> <span id="kichThuocPhanHoa"></span></p>
+        <p><strong>Bộ:</strong> <span id="bo"></span></p>
+        <p><strong>Họ:</strong> <span id="ho"></span></p>
+        <p><strong>Chi:</strong> <span id="chi"></span></p>
+        <p><strong>Hình dạng phấn hoa:</strong> <span id="hinhDangPhanHoa"></span></p>
+        <p><strong>Bề mặt phấn hoa:</strong> <span id="beMatPhanHoa"></span></p>
+        <p><strong>Phần:</strong> <span id="phan"></span></p>
+        <p><strong>Loại độ khẩu:</strong> <span id="loaiDoKhau"></span></p>
+        <p><strong>Ảnh hạt phấn:</strong></p>
+        <div class="pollen-images-container">
+          <div class="swiper mySwiper2">
+            <div class="swiper-wrapper" id="pollenImagesWrapper"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+          <div thumbsSlider="" class="swiper mySwiper">
+            <div class="swiper-wrapper" id="pollenImagesThumbs"></div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div id="footer">
+    <div class="ft-all">
+        <div class="ft-content">
+            <div class="ft-leftc">
+                <h2>Thông tin về chúng tôi</h2>
+            </div>
+
+            <div class="ft-right">
+                <h2>Kết nối với chúng tôi</h2>
+                <div>
+                    <li class="textft"><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="textft"><a href="https://twitter.com/X?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li class="textft"><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li class="textft"><a href="https://www.google.com.vn/?hl=vi"><i class="fa-brands fa-google"></i></i></a></li>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119084.51948777579!2d105.74734452456423!3d21.136823141698333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313500f801d6855d%3A0x7787dfdaf1638d4a!2zxJDDtG5nIEFuaCwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1699125714169!5m2!1svi!2s" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+        </div>
+    <div class="ft-bottom">Copyright © 2017,  HN  All rights reserved <i class="fas fa-heart" style="font-size: 24px; color: red;"></i>  <a class="textft" href=""></a></div>
 </div>
 </div>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Initialize Swiper -->
+  <script src="./js/home_fl_details.js"></script>
 </body>
 </html>

@@ -19,10 +19,10 @@
       <a href="contact.html">Liên hệ</a>
       <!-- <a href="#">Contact</a> -->
     </nav>
-      <a class="link-login" href="loginregister.html">Đăng nhập</a>
+      <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
   </header>
 
-  <div id="content container">
+  <div id="container">
     <div class="Thucvat">
       <h1></h1> 
       <div class="search">
@@ -31,58 +31,15 @@
           <button type="button" id="searchButton"><i class='bx bx-search'></i></button>
         </div>  
       </div>
-      <div class="container" id="gallery">
-        <!-- Các cây sẽ được thêm vào đây -->
-      </div>
-    
-      <!-- <div class="container">
-        <div id="">
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/IMG_5148.JPG" alt="">
-              <h3>Vải</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ mộc lan" data-ho="họ mộc lan" data-kich-thuoc="26">
-              <img src="./asset/IMG_5996.JPG" alt="">
-              <h3>Ngọc lan ta</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/IMG_5916.JPG" alt="">
-              <h3>Nhãn</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/HKKH7877.JPG" alt="">
-              <h3>Macca</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/IMG_0687.JPG" alt="">
-              <h3>a</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ loa kèn" data-ho="họ loa kèn" data-kich-thuoc="26">
-              <img src="./asset/IMG_5697.JPG" alt="">
-              <h3>Loa kèn trắng</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/z5368648180551_10d15cca3a85f62cf324dfa0e4c73533.jpg" alt="">
-              <h3>Bưởi</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/IMG_5550.JPG" alt="">
-              <h3>Sài đất</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/IMG_5935.JPG" alt="">
-              <h3>Khế</h3>
-            </a>
-            <a href="./details.html" data-bo="Bộ bồ hòn" data-ho="họ bồ hòn" data-kich-thuoc="26">
-              <img src="./asset/IMG_6012.JPG" alt="">
-              <h3>Lộc vừng</h3>
-            </a>
-          </div>
-    <div id="resultCount"></div>
-
-      </div> -->
+      <h1>Các loài hoa mới được cập nhật</h1>
     </div>
 </div>
+<div id="content" class="fl_new">
+  <div class="container" id="gallery">
+    <!-- Các cây sẽ được thêm vào đây -->
+  </div>
+</div>
+
 
    
     <div id="footer">
@@ -110,110 +67,8 @@
     
     <!-- <a class="backtop" href="#"><i class="fa-regular fa-circle-left fa-rotate-90 flower-mn"></i></a> -->
 
-  <!-- <script src="./js/validateemail.js"></script> -->
-  <!-- <script src="./js/login.js"></script> -->
   <script src="./js/search.js"></script>
-  <!-- <script src="./js/sea.js"></script> -->
-  <script src="./api/home.js"></script>
-  <script>
-    document.getElementById('searchButton').addEventListener('click', function() {
-      const query = document.getElementById('searchInput').value.trim();
-      const url = `http://localhost:3456/flowers/661f3b0c27eb1ac7e1bf9cb9?name=${encodeURIComponent(query)}`;
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const flowers = data.data.flowers;
-          const galleryContainer = document.getElementById('gallery');
-          galleryContainer.innerHTML = ''; // Clear the gallery
-
-          // Tạo phần tử cho mỗi cây và thêm vào galleryContainer
-          flowers.forEach(flower => {
-            const div = document.createElement('div');
-            div.classList.add('gallery-item');
-            const a = document.createElement('a');
-            a.href = './details.html';
-            a.setAttribute('data-bo', flower.set_id.name);
-            a.setAttribute('data-ho', flower.surname_id.name);
-            a.setAttribute('data-kich-thuoc', flower.size);
-
-            const img = document.createElement('img');
-            img.src = flower.flower_images[0] || './asset/IMG_5148.JPG'; // Sử dụng hình ảnh mặc định nếu không có hình ảnh
-            // img.alt = flower.name;
-
-            const h3 = document.createElement('h3');
-            h3.textContent = flower.name;
-
-            a.appendChild(img);
-            a.appendChild(h3);
-            div.appendChild(a);
-            galleryContainer.appendChild(div);
-          });
-        })
-        .catch(error => console.error('Error fetching data:', error));
-    });
-  </script>
-  <!-- <script>
-    function fetchAndDisplayFlowers(query = '') {
-      let apiUrl = 'http://localhost:3456/flowers/?page=1&per_page=100&field=name&sort_order=asc';
-      if (query) {
-        apiUrl += `&q=${encodeURIComponent(query)}`;
-      }
-
-      fetch(apiUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          const flowers = data.data.flowers;
-          const galleryContainer = document.getElementById('gallery');
-          galleryContainer.innerHTML = ''; // Xóa thư viện hiện tại
-
-          if (flowers.length === 0) {
-            galleryContainer.innerHTML = '<p>Không tìm thấy kết quả nào.</p>';
-            return;
-          }
-
-          // Tạo phần tử cho mỗi cây và thêm vào galleryContainer
-          flowers.forEach(flower => {
-            const div = document.createElement('div');
-            div.classList.add('gallery-item');
-            const a = document.createElement('a');
-            a.href = './details.html';
-            a.setAttribute('data-bo', flower.set_id.name);
-            a.setAttribute('data-ho', flower.surname_id.name);
-            a.setAttribute('data-kich-thuoc', flower.size);
-
-            const img = document.createElement('img');
-            img.src = flower.flower_images[0] || './asset/IMG_5148.JPG'; // Sử dụng hình ảnh mặc định nếu không có hình ảnh
-            // img.alt = flower.name;
-
-            const h3 = document.createElement('h3');
-            h3.textContent = flower.name;
-
-            a.appendChild(img);
-            a.appendChild(h3);
-            div.appendChild(a);
-            galleryContainer.appendChild(div);
-          });
-        })
-        .catch(error => {
-          console.error('Lỗi khi lấy dữ liệu:', error);
-          const galleryContainer = document.getElementById('gallery');
-          galleryContainer.innerHTML = '<p>Đã xảy ra lỗi khi tải dữ liệu.</p>';
-        });
-    }
-
-    document.getElementById('searchButton').addEventListener('click', function() {
-      const query = document.getElementById('searchInput').value.trim();
-      fetchAndDisplayFlowers(query);
-    });
-
-    // Fetch and display initial data without search query
-    fetchAndDisplayFlowers();
-  </script> -->
+  <script src="./js/home.js"></script>
+  
 </body>
 </html>
