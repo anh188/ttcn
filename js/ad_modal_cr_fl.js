@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-  
+  document.getElementById('add-micron').addEventListener('click', () => {
+    const pollenSizeInput = document.getElementById('pollen-size');
+    pollenSizeInput.value += ' µm';
+  });
  
     // Tìm phần tử button với ID addFlowerBtn
     const addFlowerBtn = document.getElementById('addFlowerBtn');
@@ -90,10 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
       formData.append('science_name', scientificName);
       formData.append('size', pollenSize);
       formData.append('set_id', orderID);
-      formData.append('surface_id', familyID);
+      formData.append('surname_id', familyID);
       formData.append('genus_id', genusID);
       formData.append('shape_id', pollenShapeID);
-      formData.append('surname_id', pollenSurfaceID);
+      formData.append('surface_id', pollenSurfaceID);
       formData.append('part_id', partID);
       formData.append('aperture_id', apertureTypeID);
   
@@ -116,12 +119,26 @@ document.addEventListener("DOMContentLoaded", function() {
           })
           .then(response => response.json())
           .then(data => {
+            if (data.success) {
+              showNotification('Thêm hoa mới thành công!');
+              // Reload lại dữ liệu mới
+              fetchData(recentUrl);
+              flowerForm.reset(); // Reset lại form
+            } else {
+              // alert('Có lỗi xảy ra, vui lòng thử lại.');
+            }
               // Xử lý dữ liệu phản hồi từ API (nếu cần)
               console.log('Created successfully:', data);
               const inputFields = document.querySelectorAll('.modal-input');
           inputFields.forEach(field => {
               field.value = '';
           });
+              // // Xử lý dữ liệu phản hồi từ API (nếu cần)
+              // console.log('Created successfully:', data);
+          //     const inputFields = document.querySelectorAll('.modal-input');
+          // inputFields.forEach(field => {
+          //     field.value = '';
+          // });
         
           // Xóa dữ liệu đã chọn từ gợi ý
           const suggestions = document.querySelectorAll('.suggestions');
@@ -132,8 +149,8 @@ document.addEventListener("DOMContentLoaded", function() {
               // Thực hiện các hành động khác sau khi tạo thành công (nếu cần)
           })
           .catch(error => {
-              console.error('Error creating:', error);
-              // Xử lý lỗi (nếu cần)
+            console.error('Error adding new flower:', error);
+            showNotification('Có lỗi xảy ra, vui lòng thử lại.');
           });
 
 
@@ -141,5 +158,15 @@ document.addEventListener("DOMContentLoaded", function() {
       });
           
 });
+
+
+function showNotification(message) {
+  const notification = document.getElementById('notificationcr');
+  notification.textContent = message;
+  notification.style.display = 'block';
+  setTimeout(() => {
+      notification.style.display = 'none';
+  }, 1000);
+}
 
  

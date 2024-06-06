@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
                               <td><img src="${flower.pollen_grain_images[0] || './asset/default_pollen.jpg'}" alt="${flower.name}" style="width: 110px; height: 120px; object-fit: cover"></td>
                               <td>${new Date(flower.updated_at).toLocaleString()}</td>
                               <td>
-                                  <button class="btn btn-warning" style="margin-bottom: 5px" onclick="editFlower('${flower._id}')"><i class="fa-solid fa-pen-to-square"></i></button>
-                                  <button class="btn btn-danger" onclick="confirmDelete('${flower._id}')"><i class="fa-solid fa-trash"></i></button>
+                                  // <button class="btn btn-warning" style="margin-bottom: 5px" onclick="editFlower('${flower._id}')"><i class="fa-solid fa-pen-to-square"></i></button>
+                                  // <button class="btn btn-danger" onclick="aaaaa('${flower._id}')"><i class="fa-solid fa-trash"></i></button>
                               </td>
                           </tr>
                       `;
@@ -56,73 +56,35 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderPagination() {
     const pagination = document.getElementById('pagination');
     pagination.innerHTML = ''; // Xóa các nút trang cũ
-
-    // Nếu tổng số trang nhỏ hơn hoặc bằng 5, hiển thị tất cả các trang
-    if (totalPages <= 5) {
-        for (let i = 1; i <= totalPages; i++) {
-            let pageItem = document.createElement('li');
-            pageItem.classList.add('page-item');
-            if (i === currentPage) {
-                pageItem.classList.add('active');
-            }
-
-            let pageLink = document.createElement('a');
-            pageLink.classList.add('page-link');
-            pageLink.href = '#';
-            pageLink.textContent = i;
-            pageLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                currentPage = i;
-                fetchAndDisplayCurrentPage(searchInput.value.trim(), currentPage);
-                document.querySelector('.management_rg').scrollIntoView({
-                    block: 'start',
-                    behavior: 'auto'
-                });
-            });
-
-            pageItem.appendChild(pageLink);
-            pagination.appendChild(pageItem);
-        }
-    } else {
-        // Nếu tổng số trang lớn hơn 5, hiển thị các trang với dấu "..." ở các vị trí phù hợp
-        let startPage, endPage;
-        if (currentPage <= 3) {
-            startPage = 1;
-            endPage = 5;
-        } else if (currentPage >= totalPages - 2) {
-            startPage = totalPages - 4;
-            endPage = totalPages;
-        } else {
-            startPage = currentPage - 2;
-            endPage = currentPage + 2;
-        }
-
-        for (let i = startPage; i <= endPage; i++) {
-            let pageItem = document.createElement('li');
-            pageItem.classList.add('page-item');
-            if (i === currentPage) {
-                pageItem.classList.add('active');
-            }
-
-            let pageLink = document.createElement('a');
-            pageLink.classList.add('page-link');
-            pageLink.href = '#';
-            pageLink.textContent = i;
-            pageLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                currentPage = i;
-                fetchAndDisplayCurrentPage(searchInput.value.trim(), currentPage);
-                document.querySelector('.management_rg').scrollIntoView({
-                    block: 'start',
-                    behavior: 'auto'
-                });
-            });
-
-            pageItem.appendChild(pageLink);
-            pagination.appendChild(pageItem);
-        }
+  
+    const pageLinks = [];
+  
+    for (let i = 1; i <= totalPages; i++) {
+      let pageItem = document.createElement('li');
+      pageItem.classList.add('page-item');
+      if (i === currentPage) {
+        pageItem.classList.add('active');
+      }
+  
+      let pageLink = document.createElement('a');
+      pageLink.classList.add('page-link');
+      pageLink.href = '#';
+      pageLink.textContent = i;
+      pageLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Ngăn cản hành động mặc định của trình duyệt
+        currentPage = i;
+        fetchAndDisplayFlowers(searchInput.value.trim(), currentPage);
+        window.scrollIntoView({
+          block: 'start',
+          behavior: 'auto'
+        });
+      });
+  
+      pageItem.appendChild(pageLink);
+      pagination.appendChild(pageItem);
+      pageLinks.push(pageLink);
     }
-}
+  }
 
 function fetchAndDisplayCurrentPage(query = '') {
   fetchAndDisplayFlowers(query, currentPage);

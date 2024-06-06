@@ -1,4 +1,14 @@
-
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.bg{
+  background-color: #fff;
+}
 
 /* #menu{
   display: flex;
@@ -35,9 +45,27 @@ button, input {
 }
 
 
+
+.filter-container{
+  font-size: large; 
+}
+
+
+.gallery-item{
+  background-color: #F7F6BB;
+  border-radius: 9px
+}
+.fixed-search {
+  background: white !important; /* Màu nền cho thanh tìm kiếm */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Tạo bóng đổ để nhìn rõ hơn */
+  animation: fadeIn 0.5s ease-in-out !important; /* Hiệu ứng chuyển động mượt mà */
+}
+
 .search-container {
   padding: 15px;
-  width: 250px;
+  width: 350px;
   height: 45px;
   text-align: center;
   display: flex;
@@ -46,20 +74,18 @@ button, input {
   background: transparent;
   border: 2px solid #030303;
   border-radius: 6px;
+  backdrop-filter: blur(10px);
 }
 
-.filter-container{
-  font-size: large; 
-}
-
-.search{
+.search {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-bottom: 30px;
+  animation: fadeIn 1s ease-in-out !important ; /* Thêm chuyển động cho margin */
 }
 
-.search-container input{
+.search-container input {
   width: 100%;
   background: transparent;
   border: none;
@@ -68,14 +94,11 @@ button, input {
   color: #030303;
   padding-left: 10px;
 }
-.gallery-item{
-  background-color: #FDF0F0;
-}
-.search-container input::placeholder{
+.search-container input::placeholder {
   color: #c9c4c4;
 }
 
-.search-container button{
+.search-container button {
   width: 40px;
   height: 100%;
   background: transparent;
@@ -87,11 +110,10 @@ button, input {
   cursor: pointer;
 }
 
-.search-container button i{
+.search-container button i {
   font-size: 22px;
   color: #030303;
 }
-
 
 .bar {
   width: 25px;
@@ -103,7 +125,7 @@ button, input {
   margin: 80px;
 }
 .Thucvat{
-  margin-bottom: 80px;
+  /* margin-top: 150px; */
 }
 #gallery {
   display: grid;
@@ -117,11 +139,13 @@ button, input {
   text-align: center;
   text-decoration: none;
   color: #333;
+  margin-top: 10px;
 }
 
 #gallery img {
-  max-width: 100%;
-  height: auto;
+  width: 220px;
+  height: 240px;
+  object-fit: cover;
   display: block;
   margin: 0 auto;
   border-radius: 5px;

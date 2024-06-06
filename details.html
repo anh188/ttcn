@@ -5,56 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chi tiết thông tin cây</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="./css/detail.css">
   <link rel="stylesheet" href="./css/home.css">
+  <!-- <link rel="stylesheet" href="/css/homepage.css"> -->
+  <link rel="stylesheet" href="css/style.css">    
+  <style>
+    #searchContainer{
+      background-color: #fff;
+      height: 15px;
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
+  <header class="header" style="background-color: #45532A;">
     <nav class="navbar">
       <a href="home.html">Trang chủ</a>
       <a href="contact.html">Giới thiệu</a>
-      <a href="contact.html">Liên hệ</a>
+      <!-- <a href="contact.html">Liên hệ</a> -->
       <!-- <a href="#">Contact</a> -->
     </nav>
+    <div class="search-container" id="searchContainer">
+      <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+      <button type="button" id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></i></button>
+    </div> 
       <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
   </header>
 
   <div class="details-container">
-    <h1>Chi tiết thông tin cây</h1>
+    <h1 style="margin-left: 80px;">Chi tiết thông tin cây</h1>
     <div class="details">
-      <div class="flower-images-container">
-        <div class="swiper mySwiper2">
-          <div class="swiper-wrapper" id="flowerImagesWrapper"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-        <div thumbsSlider="" class="swiper mySwiper">
-          <div class="swiper-wrapper" id="flowerImagesThumbs"></div>
-        </div>
-      </div>
-      <div>
-        <p><strong>Tên thường gọi:</strong> <span id="tenThuongGoi"></span></p>
-        <p><strong>Tên khoa học:</strong> <span id="tenKhoaHoc"></span></p>
-        <p><strong>Kích thước phấn hoa:</strong> <span id="kichThuocPhanHoa"></span></p>
-        <p><strong>Bộ:</strong> <span id="bo"></span></p>
-        <p><strong>Họ:</strong> <span id="ho"></span></p>
-        <p><strong>Chi:</strong> <span id="chi"></span></p>
-        <p><strong>Hình dạng phấn hoa:</strong> <span id="hinhDangPhanHoa"></span></p>
-        <p><strong>Bề mặt phấn hoa:</strong> <span id="beMatPhanHoa"></span></p>
-        <p><strong>Phần:</strong> <span id="phan"></span></p>
-        <p><strong>Loại độ khẩu:</strong> <span id="loaiDoKhau"></span></p>
-        <p><strong>Ảnh hạt phấn:</strong></p>
-        <div class="pollen-images-container">
+     
+
+      <div class="img-lf-pl">
+        <!-- <p><strong>Ảnh hoa:</strong></p> -->
+        <div class="flower-images-container">
           <div class="swiper mySwiper2">
-            <div class="swiper-wrapper" id="pollenImagesWrapper"></div>
+            <div class="swiper-wrapper" id="flowerImagesWrapper"></div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
           </div>
           <div thumbsSlider="" class="swiper mySwiper">
-            <div class="swiper-wrapper" id="pollenImagesThumbs"></div>
+            <div class="swiper-wrapper" id="flowerImagesThumbs"></div>
           </div>
+        </div>        
+        <p><strong>Ảnh hạt phấn:</strong></p>
+
+          <div class="pollen-images-container">
+            <div class="swiper mySwiper2">
+              <div class="swiper-wrapper" id="pollenImagesWrapper"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+            <div thumbsSlider="" class="swiper mySwiper">
+              <div class="swiper-wrapper" id="pollenImagesThumbs"></div>
+            </div>
+          </div>     
         </div>
-      </div>
+        <div class="if-rg">
+          <p><strong>Tên thường gọi:</strong> <span id="tenThuongGoi"></span></p>
+          <p><strong>Tên khoa học:</strong> <span id="tenKhoaHoc"></span></p>
+          <p><strong>Kích thước phấn hoa:</strong> <span id="kichThuocPhanHoa"></span></p>
+          <p><strong>Bộ:</strong> <span id="bo"></span></p>
+          <p><strong>Họ:</strong> <span id="ho"></span></p>
+          <p><strong>Chi:</strong> <span id="chi"></span></p>
+          <p><strong>Hình dạng phấn hoa:</strong> <span id="hinhDangPhanHoa"></span></p>
+          <p><strong>Bề mặt phấn hoa:</strong> <span id="beMatPhanHoa"></span></p>
+          <p><strong>Phần:</strong> <span id="phan"></span></p>
+          <p><strong>Loại độ khẩu:</strong> <span id="loaiDoKhau"></span></p>
+        </div>
     </div>
   </div>
 
@@ -84,5 +103,6 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- Initialize Swiper -->
   <script src="./js/home_fl_details.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>

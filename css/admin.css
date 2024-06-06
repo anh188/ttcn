@@ -24,6 +24,7 @@ body {
 
 h1 {
   text-align: center;
+  color: #5DA452 !important;
 }
 
 
@@ -69,12 +70,21 @@ table, th, td {
 }
 
 th, td {
-  padding: 8px;
+  padding: 8px !important;
   text-align: left;
 }
 
 th {
   background-color: #f2f2f2;
+}
+
+#addFlowerBtn {
+  margin-top: 10px;
+  width: 120px;
+  height: 40px;
+  background: #5DA452;
+  border: none;
+  color: #fff;
 }
 
 button {
@@ -109,29 +119,60 @@ button.delete {
 .pagination {
   justify-content: center;
 }
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.pagination li {
+  margin-right: 10px;
+}
+.pagination li a {
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: #fff;
+  color: #5DA452 !important;
+  border-radius: 5px;
+}
+.pagination li a:hover {
+  background-color: #ddd;
+}
+.pagination .active a {
+  background-color: #5DA452 ;
+  color: #fff !important;
+}
+
 .page-item.disabled .page-link {
   pointer-events: none;
 }
 
-.management_lf{
-  background-color: black;
-  width: 300px !important;
+.management_rg{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.flowerTable{
+  margin-left: 20px !important;
 }
 
 .management{
   display: flex !important;
+  /* height: 00vh; */
 }
 .profile-ava{
   border-radius: 50%;
-  width: 100%;
+  margin: 10px;
 }
 .profile nav a{
   display: block;
-  width: 100%;
   height: 40px;
-  margin-left: 20px;
+  margin: 0 10px;
+  padding: 7px;
+  text-decoration: none;
+  border-radius: 10px
 }
-
+a{
+  color: #fff !important;
+}
 .modal_creatfl{
   position: fixed;
   top: 0;

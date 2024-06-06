@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Đăng Nhập</title>
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/logreg.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
     <nav class="navbar">
       <a href="home.html">Trang chủ</a>
       <a href="#">Giới thiệu</a>
-      <a href="#">Liên hệ</a>
+      <!-- <a href="#">Liên hệ</a> -->
       <!-- <a href="#">Contact</a> -->
     </nav>
     <!-- <form action="#" class="search-bar">
@@ -28,10 +28,10 @@
 
   <div class="container logreg">
     <div class="content">
-      <h2 class="logo"><i class='bx bxs-leaf'></i>Search</h2>
+      <h2 class="logo">Tìm kiếm dữ liệu phấn hoa</h2>
 
       <div class="text-sci">
-        <h2>Welcome<br><span>Tra cứu Dữ liệu Phấn hoa</span></h2>
+        <!-- <h2>Xin Chào<br><span>Tra cứu Dữ liệu Phấn hoa</span></h2> -->
         <p>Hãy đăng nhập để truy cập vào dữ liệu phấn hoa của chúng tôi và khám phá thế giới tuyệt vời của những hạt phấn hoa!!</p>
         <div class="social-icon">
           <a href="#"><i class='bx bxl-facebook-circle' ></i></a>
@@ -49,8 +49,8 @@
 
           <div class="input-box">
             <span class="icon"><i class='bx bxs-envelope'></i></span>
-            <input type="text" required autocomplete="username" id="usernamelg" >
-            <label>Tài khoản hoặc Email</label>
+            <input type="email" required autocomplete="username" id="usernamelg" >
+            <label>Email</label>
           </div>
 
           <div class="input-box">
@@ -68,13 +68,13 @@
 
           <button type="submit" class="btn">Đăng nhập</button>
           
-          <div class="login-register">
+          <!-- <div class="login-register">
             <p>Bạn không có tài khoản? <a href="#" class="register-link">Đăng ký</a> </p>
-          </div>
+          </div> -->
         </form>
       </div>
 
-      <div class="form-box register">
+      <!-- <div class="form-box register">
         <form id="registerForm" action="#">
           <h2> Đăng ký</h2>
 
@@ -116,12 +116,44 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <script src="./js/login.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   
-  <script src="./api/apilogin.js"> </script>
-<script src="./api/apiregister.js"></script>
+  <!-- <script src="./api/apilogin.js"> </script> -->
+<!-- <script src="./api/apiregister.js"></script> -->
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+    const email = document.getElementById('usernamelg').value;
+    const password = document.getElementById('passwordField').value;
+
+    // Gửi yêu cầu POST đến API login
+    fetch('http://localhost:3456/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+    // Xử lý phản hồi từ API
+    if (data.status === 200 && data.error === false) {
+        // Lưu token vào Local Storage
+        localStorage.setItem('accessToken', data.data.access_token);
+        // Log ra token
+        console.log('Access Token:', data.data.access_token);
+        // Chuyển hướng sang trang ad_user.html
+        window.location.href = 'ad_user.html';
+    } else {
+        // Xử lý khi đăng nhập thất bại (hiển thị thông báo lỗi, vv.)
+        alert('Đăng nhập không thành công. Vui lòng kiểm tra lại tài khoản và mật khẩu.');
+    }
+})
+  });
+</script>
 </body>
 </html>

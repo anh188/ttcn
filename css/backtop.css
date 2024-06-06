@@ -1,0 +1,18 @@
+.backtop {
+  position: fixed;
+  right: 30px;
+  bottom: -50px; /* Để nút ẩn hoàn toàn ra khỏi màn hình */
+  z-index: 3;
+  opacity: 0; /* Ẩn nút bằng cách làm mờ nó */
+  transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.backtop i {
+  color: #45532A;
+  font-size: 40px;
+}
+
+.backtop.show {
+  bottom: 30px; /* Hiển thị nút */
+  opacity: 1; /* Làm nút hiển thị */
+}

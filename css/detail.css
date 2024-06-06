@@ -1,6 +1,6 @@
 /* Add your CSS styles here */
 .details-container {
-  max-width: 600px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -10,7 +10,14 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
 }
+.img-lf-pl {
+  width: 50%;
+}
+
+
 
 .details h1 {
   text-align: center;
@@ -27,11 +34,12 @@
   margin: 0 auto;
   object-fit: cover;
 }
-
+.flower-images-container {
+  height: 700px;
+}
 body {
-  background: #eee;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   color: #000;
   margin: 0;
   padding: 0;
@@ -93,9 +101,9 @@ body {
 
 .flower-images-container .swiper-slide img,
 .pollen-images-container .swiper-slide img {
-  width: auto;
-  height: 200px; /* Adjust the height as needed */
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pollen-images-container .mySwiper2 {

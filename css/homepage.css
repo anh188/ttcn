@@ -1,0 +1,70 @@
+.search{
+  height: 50vh;
+}
+
+.search-container button i {
+color: #45532A;
+}
+@keyframes fadeInBackground {
+0% {
+background-position: center 0%;
+}
+100% {
+background-position: center 100%;
+}
+}
+
+.search-container {
+border: 2px solid #45532A;
+}
+.navbar a{
+color: #45532A;
+}
+#searchInput::placeholder {
+color: #45532A;
+}
+span.messages-btnsearch {
+  position: absolute;
+  top: 30%;
+}
+.header{
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+}
+
+.header.scrolled {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hd-nav-a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 1rem;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.hd-nav-a:after {
+  background-color: #45532A !important;
+}
+
+.hd-nav-a:hover {
+  color: #000;
+}
+
+.hd-nav-a:hover:after {
+  width: 100%;
+}
+
+.hd-nav-a.scrolled:after {
+  background-color: #ddd !important;
+}

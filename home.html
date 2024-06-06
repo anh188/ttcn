@@ -3,38 +3,49 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trang chủ</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/home.css">
-    <link rel="stylesheet" href="./css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="./search.html">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="./css/backtop.css">
+<style>
+  #containers {
+    background: linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url(./asset/bg1.png) no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    animation: fadeInBackground 3s ease-in-out;
+  }
+</style>
   </head>
 <body>
   <header class="header">
     <nav class="navbar">
-      <a href="home.html">Trang chủ</a>
-      <a href="contact.html">Giới thiệu</a>
-      <a href="contact.html">Liên hệ</a>
-      <!-- <a href="#">Contact</a> -->
+      <a class="hd-nav-a" href="home.html">Trang chủ</a>
+      <a class="hd-nav-a" href="contact.html">Giới thiệu</a>
+      <!-- <a class="hd-nav-a" href="contact.html">Liên hệ</a> -->
     </nav>
-      <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
   </header>
 
-  <div id="container">
+  <div id="containers">
     <div class="Thucvat">
-      <h1></h1> 
+      
       <div class="search">
-        <div class="search-container">
+        <div class="search-container" id="searchContainer">
           <input type="text" id="searchInput" placeholder="Tìm kiếm...">
           <button type="button" id="searchButton"><i class='bx bx-search'></i></button>
-        </div>  
+        </div> 
+        <span class="messages-btnsearch">Hãy nhập tên thường gọi hoặc tên khoa học để tìm kiếm thông tin chi tiết về các loại phấn hoa.</span>
       </div>
-      <h1>Các loài hoa mới được cập nhật</h1>
     </div>
+
 </div>
-<div id="content" class="fl_new">
+<div id="content" class="fl_new bg">
+  <h1 class="container" style="padding-left: 50px; margin-top: 50px;">Các loài hoa mới được cập nhật</h1>
   <div class="container" id="gallery">
     <!-- Các cây sẽ được thêm vào đây -->
   </div>
@@ -57,18 +68,78 @@
                         <li class="textft"><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
                         <li class="textft"><a href="https://www.google.com.vn/?hl=vi"><i class="fa-brands fa-google"></i></i></a></li>
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119084.51948777579!2d105.74734452456423!3d21.136823141698333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313500f801d6855d%3A0x7787dfdaf1638d4a!2zxJDDtG5nIEFuaCwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1699125714169!5m2!1svi!2s" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119143.0698549737!2d105.79406458906251!3d21.063836386161785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a8d22485051d%3A0x5cb2530a1a6b6c0!2zSOG7jWMgVmnhu4duIE7DtG5nIE5naGnhu4dwIFZp4buHdCBOYW0!5e0!3m2!1svi!2sus!4v1716828115137!5m2!1svi!2sus" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
                 </div>
             </div>
-        <div class="ft-bottom">Copyright © 2017,  HN  All rights reserved <i class="fas fa-heart" style="font-size: 24px; color: red;"></i>  <a class="textft" href=""></a></div>
+        <div class="ft-bottom">Chúng tôi tự hào mang đến những thông tin hữu ích<i class="fas fa-heart" style="font-size: 24px; color: red; padding-left: 10px;"></i>  <a class="textft" href=""></a></div>
     </div>
 </div>
-    
-    <!-- <a class="backtop" href="#"><i class="fa-regular fa-circle-left fa-rotate-90 flower-mn"></i></a> -->
+  <div class="backdrop"></div>
+  <a class="backtop" href="#"><i class="fa-regular fa-circle-left fa-rotate-90 flower-mn"></i></a>
+<script>
+let isSearchFixed = false; // Biến boolean để kiểm tra xem lớp fixed-search đã được thêm hay chưa
 
-  <script src="./js/search.js"></script>
+window.addEventListener('scroll', function() {
+
+  const searchContainer = document.getElementById('searchContainer');
+  const header = document.querySelector('.header');
+  const nava = document.querySelectorAll('.hd-nav-a')
+  if (searchContainer && header) {
+    if (window.scrollY > 150 && !isSearchFixed) { // Kiểm tra nếu cần thêm lớp fixed-search
+      searchContainer.classList.add('fixed-search');
+      header.appendChild(searchContainer);
+      isSearchFixed = true; // Đặt biến isSearchFixed thành true để chỉ ra rằng lớp fixed-search đã được thêm
+    } else if (window.scrollY < 100 && isSearchFixed) { // Kiểm tra nếu cần xóa lớp fixed-search
+      const thucvat = document.querySelector('.Thucvat .search');
+      searchContainer.classList.remove('fixed-search');
+      thucvat.appendChild(searchContainer);
+      isSearchFixed = false; // Đặt biến isSearchFixed thành false để chỉ ra rằng lớp fixed-search đã được xóa
+    }
+  }
+  
+  if (window.scrollY > 150) {
+    header.style.backgroundColor = '#45532A';
+    header.style.animation = 'fadeIn 2s ease-in-out !important';
+    const navLinks = document.querySelectorAll('.hd-nav-a');
+  navLinks.forEach(link => {
+    link.style.color = '#fff';
+  });
+  } else {
+    header.style.backgroundColor = 'initial';
+    header.style.animation = 'none';
+    const navLinks = document.querySelectorAll('.hd-nav-a');
+  navLinks.forEach(link => {
+    link.style.color = 'initial';
+  });
+  }
+});
+</script>
+<script>
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('.header');
+  const navLinks = document.querySelectorAll('.hd-nav-a');
+
+  if (window.scrollY >= 100) {
+    header.classList.add('scrolled');
+    navLinks.forEach(link => {
+      link.classList.add('scrolled');
+    });
+  } else {
+    header.classList.remove('scrolled');
+    navLinks.forEach(link => {
+      link.classList.remove('scrolled');
+    });
+  }
+});
+</script>
+  <style>
+
+  </style>
+<script src="./js/search.js"></script>
   <script src="./js/home.js"></script>
+  <script src="./js/backtop.js"></script>
   
 </body>
 </html>

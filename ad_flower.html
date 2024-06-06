@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý thông tin hoa</title>
+    <link rel="stylesheet" href="./css/menu_ad.css">
     <link rel="stylesheet" href="./css/admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -11,34 +12,43 @@
   </head>
 <body>
   <div class="management">
-    <div class="management_lf c-7">
+    <div class="management_lf" style="background: #5DA452;">
       <div class="profile">
         <img class="profile-ava" src="./asset/images.jpg" alt="">
         <h1 class="nameuser"></h1>
         <nav>
-          <a href="">Quản lý user</a>
-          <a href="">Quản lý hoa</a>
-          <a href="">Quản lý Bộ</a>
-          <a href="">Quản lý Chi</a>
-          <a href="">Quản lý Họ</a>
-          <a href="">Quản lý Hình dạng</a>
-          <a href="">Quản lý Bề mặt</a>
-          <a href="">Quản lý Loại độ khẩu</a>
-          <a href="">Quản lý Phần</a>
+          <a href="/ad_user.html">Quản lý user</a>
+          <a href="/ad_flower.html">Quản lý hoa</a>
+          <a href="/ad_set.html">Quản lý Bộ</a>
+          <a href="/ad_genus.html">Quản lý Chi</a>
+          <a href="/ad_surname.html">Quản lý Họ</a>
+          <a href="/ad_shape.html">Quản lý Hình dạng</a>
+          <a href="/ad_surface.html">Quản lý Bề mặt</a>
+          <a href="/ad_aperture.html">Quản lý Loại độ khẩu</a>
+          <a href="/ad_part.html">Quản lý Phần</a>
         </nav>
       </div>
     </div>
-    <div class="management_rg c-3">
+    <div class="management_rg">
       <div >
-        <h1>Quản lý thông tin hoa</h1>
-        <div id="notification">Xóa dữ liệu thành công</div>
-        <div class="container mb-4">
-          <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm theo tên hoa hoặc tên khoa học...">
-          <button id="addFlowerBtn"><i class="fa-solid fa-square-plus"></i> Add New</button>
+        
+        <div class="header">
+          <div id="notificationcr"></div>
+          <!-- <div id="notificationcr">Xóa dữ liệu thành công</div> -->
+          <!-- <div id="notification" style="display: none;"></div> -->
+          <button id="logoutButton">Đăng xuất</button>
+          <!-- <div id="notificationcr">Thêm dữ liệu thành công</div> -->
+        </div>
+        <div class="container mb-4 d-flex" style="justify-content: space-between;">
+          <h1>Quản lý thông tin hoa</h1>
+          <div class="d-flex">
+            <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm tên hoa...">
+            <button id="addFlowerBtn">Thêm mới</button>
+          </div>
         </div>
       </div>
 
-      <table id="flowerTable" class="table table-hover">
+      <table id="flowerTable" class="">
         <thead>
           <tr>
             <th>Ảnh hoa</th>
@@ -48,6 +58,8 @@
             <th>Bộ</th>
             <th>Họ</th>
             <th>Chi</th>
+            <th>Hình dạng</th>
+            <th>Bề mặt</th>
             <th>Phần</th>
             <th>Loại độ khẩu</th>
             <th>Ảnh hạt phấn</th>
@@ -62,7 +74,7 @@
 
       <nav aria-label="Page navigation">
         <ul class="pagination" id="pagination">
-          <!-- Pagination buttons will be generated here -->
+          <!-- Các nút trang sẽ được tạo ở đây -->
         </ul>
       </nav>
     </div>
@@ -75,7 +87,7 @@
               <i class="fa-solid fa-xmark"></i>
           </div>
           <header class="modal-header">
-              <h2>Thêm hoa mới</h2>
+              <h2 class="modal-title">Thêm hoa mới</h2>
           </header>
   
           <div class="modal_creatfl_body">
@@ -111,7 +123,7 @@
   
               <div class="p-2">
                   <label class="modal-input p-1" for="genus">Chi</label>
-                  <input type="text" class="modal-input" id="genus" placeholder="Nhập chi" oninput="fetchSuggestions('genuss', 'genus')">
+                  <input type="text" class="modal-input" id="genus" placeholder="Nhập chi" oninput="fetchSuggestions('genuses', 'genus')">
                   <div id="genus-suggestions" class="suggestions"></div>
               </div>
   
@@ -146,10 +158,10 @@
               </div>
   
               <div class="p-2">
-                  <label class="modal-input p-1" for="pollen-image">Ảnh hạt phấn</label>
-                  <input type="file" class="modal-input" id="pollen-image" placeholder="Chọn ảnh hạt phấn" multiple>
-                  <div id="pollen-image-preview"></div>
-              </div>
+                <label class="modal-input p-1" for="pollen-image">Ảnh hạt phấn</label>
+                <input type="file" class="modal-input" id="pollen-image" placeholder="Chọn ảnh hạt phấn" multiple>
+                <div id="pollen-image-preview"></div>
+            </div>
   
               <div>
                   <button class="btn_save_cr_flower">Lưu</button>
@@ -158,11 +170,101 @@
           </div>
       </div>
   </div>
+<!-- 
+  <div class="modal_upfl modal_up">
+    <div class="modal-container js-modal-up-container">
+        <div class="modal-close-up js-modal-close-up">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <header class="modal-header">
+            <h2 class="modal-title">Chỉnh sửa thông tin hoa</h2>
+        </header>
+
+        <div class="modal_upfl_body">
+            <div class="p-2">
+                <label class="modal-input p-1" for="name">Tên thường gọi</label>
+                <input type="text" class="modal-input" id="name" placeholder="Nhập tên thường gọi">
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="scientific-name">Tên khoa học</label>
+                <input type="text" class="modal-input" id="scientific-name" placeholder="Nhập tên khoa học">
+            </div>
+
+            <div class="p-2">
+              <div class="d-flex">
+                <label class="modal-input p-1" for="pollen-size">Kích thước hạt phấn</label>
+                <button id="add-micron">µm</button>
+              </div>
+              <input type="text" class="modal-input" id="pollen-size" placeholder="Nhập kích thước hạt phấn">
+          </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="order">Bộ</label>
+                <input type="text" class="modal-input" id="order" placeholder="Nhập bộ" oninput="fetchSuggestions('sets', 'order')">
+                <div id="order-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="family">Họ</label>
+                <input type="text" class="modal-input" id="family" placeholder="Nhập họ" oninput="fetchSuggestions('surnames', 'family')">
+                <div id="family-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="genus">Chi</label>
+                <input type="text" class="modal-input" id="genus" placeholder="Nhập chi" oninput="fetchSuggestions('genuses', 'genus')">
+                <div id="genus-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="pollen-shape">Hình dạng phấn hoa</label>
+                <input type="text" class="modal-input" id="pollen-shape" placeholder="Nhập hình dạng phấn hoa" oninput="fetchSuggestions('shapes', 'pollen-shape')">
+                <div id="pollen-shape-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="pollen-surface">Bề mặt phần hoa</label>
+                <input type="text" class="modal-input" id="pollen-surface" placeholder="Nhập bề mặt phần hoa" oninput="fetchSuggestions('surfaces', 'pollen-surface')">
+                <div id="pollen-surface-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="part">Phần</label>
+                <input type="text" class="modal-input" id="part" placeholder="Nhập phần" oninput="fetchSuggestions('parts', 'part')">
+                <div id="part-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="aperture-type">Loại độ khẩu</label>
+                <input type="text" class="modal-input" id="aperture-type" placeholder="Nhập loại độ khẩu" oninput="fetchSuggestions('apertures', 'aperture-type')">
+                <div id="aperture-type-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="p-2">
+                <label class="modal-input p-1" for="flower-image">Ảnh hoa</label>
+                <input type="file" class="modal-input" id="flower-image" placeholder="Chọn ảnh hoa" multiple>
+                <div id="flower-image-preview"></div>
+            </div>
+
+            <div class="p-2">
+              <label class="modal-input p-1" for="pollen-image">Ảnh hạt phấn</label>
+              <input type="file" class="modal-input" id="pollen-image" placeholder="Chọn ảnh hạt phấn" multiple>
+              <div id="pollen-image-preview"></div>
+          </div>
+
+            <div>
+                <button class="btn_save_cr_flower">Lưu</button>
+                <button class="btn_exit_cr_flower">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+  <!-- <button class="btn btn-warning" onclick="editFlower('flowerId')"><i class="fa-solid fa-pen-to-square"></i></button> -->
 
 <script src="./js/ad_delete_fl.js"></script>
 <script src="./js/ad_creat_fl.js"></script>
 <script src="./js/ad_modal_cr_fl.js"></script>
-<script src="./js/ad_showdt_fl.js"></script>
 <script>
 
 let timeoutId; // Biến để lưu ID của timer
@@ -191,7 +293,7 @@ function fetchSuggestions(type, elementId) {
                 fetch(apiUrl)
                     .then(response => response.json())
                     .then(res => {
-                        const data = res.data[type] || res.data.genuss || [];
+                        const data = res.data[type] || [];
 
                         if (data && Array.isArray(data)) {
                             suggestionsContainer.innerHTML = data.map(item => `
@@ -250,6 +352,29 @@ function getIdFromInput(type, elementId) {
 }
   </script>
 
+<script>
+// Lấy tất cả các thẻ input trên trang
+const inputFields = document.querySelectorAll('input');
+
+// Gắn sự kiện 'input' cho mỗi thẻ input
+inputFields.forEach(input => {
+  input.addEventListener('input', capitalizeFirstLetter);
+});
+
+function capitalizeFirstLetter(event) {
+  // Kiểm tra nếu trường input là loại file
+  if (event.target.type !== 'file') {
+    // Lấy giá trị hiện tại của thẻ input
+    let value = event.target.value;
+
+    // Viết hoa ký tự đầu tiên của đoạn
+    value = value.charAt(0).toUpperCase() + value.slice(1);
+
+    // Cập nhật giá trị của thẻ input với giá trị mới đã được viết hoa
+    event.target.value = value;
+  }
+}
+</script>
 <style>
 .suggestions {
     border: 1px solid #ccc;
@@ -289,5 +414,37 @@ function getIdFromInput(type, elementId) {
     background-color: #f0f0f0;
 }
   </style>
+<script src="./js/ad_update_fl.js"></script>
+<script src="./js/menu_ad.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const profileName = document.querySelector('.nameuser');
+    const profileAvatar = document.querySelector('.profile-ava');
+
+    // Lấy token từ Local Storage sau khi đăng nhập thành công
+    const token = localStorage.getItem('accessToken');
+
+    if (token) {
+        // Nếu có token, gửi yêu cầu API để lấy thông tin người dùng
+        fetch('http://localhost:3456/auth/me', {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // // Xử lý dữ liệu trả về
+            // const { name, avatar } = data;
+            // profileName.textContent = name;
+            // profileAvatar.src = avatar;
+        })
+        .catch(error => console.error('Error fetching user data:', error));
+    } 
+});
+</script>
+<script src="./js/ad_showdt_fl.js"></script>
+<script src="./js/logout.js"></script>
+
 </body>
 </html>

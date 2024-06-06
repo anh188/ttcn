@@ -10,16 +10,34 @@
     <link rel="stylesheet" href="./css/search.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+      .fixed-search {
+    background: white !important;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out !important;
+}
+.search{
+  margin-bottom: 0;
+}
+    </style>
 </head>
 <body>
-  <header class="header">
+  <header class="header" style="background-color: #45532A;">
     <nav class="navbar">
       <a href="home.html">Trang chủ</a>
       <a href="contact.html">Giới thiệu</a>
-      <a href="contact.html">Liên hệ</a>
+      <!-- <a href="contact.html">Liên hệ</a> -->
       <!-- <a href="#">Contact</a> -->
     </nav>
-      <a class="link-login" href="loginregister.html">Đăng nhập</a>
+    <div class="search">
+      <div class="search-container fixed-search">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+        <button type="button" id="searchButton"><i class='bx bx-search'></i></button>
+      </div>  
+    </div>
+      <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
   </header>
  
     <!-- <div class="filter-container">
@@ -41,16 +59,10 @@
     <div id="content container">
       <div class="Thucvat">
         <h1>Thư Viện Hoa</h1> 
-        <div class="search">
-          <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm...">
-            <button type="button" id="searchButton"><i class='bx bx-search'></i></button>
-          </div>  
-        </div>
+        <p id="resultCount">Số kết quả tìm kiếm: 0</p>
         <div class="container" id="gallery">
           <!-- Các cây sẽ được thêm vào đây -->
         </div>
-        <p id="resultCount">Số kết quả hiển thị: 0</p>
       </div>
     </div>
   
@@ -59,7 +71,7 @@
         const searchInput = document.getElementById('searchInput');
         const urlParams = new URLSearchParams(window.location.search);
         const searchQuery = urlParams.get('q') || sessionStorage.getItem('searchQuery');
-        
+        const resultCount = document.getElementById('resultCount');
         if (searchQuery) {
           searchInput.value = searchQuery; // Hiển thị từ khóa trên thanh tìm kiếm
           const url = `http://localhost:3456/flowers/?page=1&per_page=100&field=name&sort_order=asc&q=${encodeURIComponent(searchQuery)}`;
@@ -71,6 +83,7 @@
             .then(response => response.json())
             .then(data => {
               const flowers = data.data.flowers;
+              resultCount.textContent = `Số kết quả tìm kiếm: ${flowers.length}`; // Cập nhật số kết quả hiển thị
               const galleryContainer = document.getElementById('gallery');
               galleryContainer.innerHTML = ''; // Clear the gallery
   
@@ -120,6 +133,7 @@
             }
           }
         });
+        
       });
   </script>
   </body>
