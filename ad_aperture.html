@@ -16,7 +16,7 @@
     <div class="management_lf">
       <div class="profile">
         <img class="profile-ava" src="./asset/images.jpg" alt="">
-        <h1 class="nameuser"></h1>
+        <h1 id="nameusershow"></h1>
         <nav>
           <a href="/ad_user.html">Quản lý user</a>
           <a href="/ad_flower.html">Quản lý hoa</a>
@@ -34,8 +34,6 @@
       <div >
         <div class="header">
           <button id="logoutButton">Đăng xuất</button>
-          <!-- <div id="notification">Xóa dữ liệu thành công</div> -->
-          <!-- <div id="notificationcr">Thêm dữ liệu thành công</div> -->
         </div>
         <div class="container mb-4 d-flex" style="justify-content: space-between;">
           <h1>Quản lý thông tin loại độ khẩu</h1>
@@ -44,66 +42,53 @@
             <button id="addFlowerBtn">Thêm mới</button>
           </div>
         </div>
+        <table id="flowerTable" class="table table-hover">
+          <thead>
+            <tr>
+              <th>Loại độ khẩu</th>
+              <th>Thời gian cập nhật</th>
+              <th>Tính năng</th>
+            </tr>
+            </thead>
+            <tbody id="tableRows">
+              <!-- Các hàng dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+            </tbody>
+        </table>
       </div>
-
-      <table id="flowerTable" class="table table-hover">
-        <thead>
-          <tr>
-            <th>Loại độ khẩu</th>
-            <th>Thời gian cập nhật</th>
-            <th>Tính năng</th>
-          </tr>
-          </thead>
-          <tbody id="tableRows">
-            <!-- Các hàng dữ liệu sẽ được thêm vào đây bằng JavaScript -->
-          </tbody>
-      </table>
-      <!-- <div id="userList"></div> -->
       <div id="pagination"></div>
+    </div>
+    <div class="modal_creatfl modal_cr">
+      <div class="modal-container js-modal-container">
+          <div class="modal-close-add js-modal-close-add">
+              <i class="fa-solid fa-xmark"></i>
+          </div>
+          <header class="modal-header">
+              <h2 class="modal-title">Thêm họ mới</h2>
+          </header>
+  
+          <div class="modal_creatfl_body">
+              <div class="p-2">
+                  <label class="modal-input p-1" for="aperturename">họ</label>
+                  <input type="text" class="modal-input" id="aperturename" placeholder="Nhập họ">
+              </div>   
+              <div>
+                  <button class="btn_save_cr_flower">Lưu</button>
+                  <button class="btn_update_cr_flower">Lưu1</button>
+                  <button class="btn_exit_cr_flower">Thoát</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div id="notification" style="display: none;">
+
+    
+      <!-- <div id="userList"></div> -->
 
 
-
+<script src="./js/show_nameuser_login.js"></script>
 <script src="./js/menu_ad.js"></script>
-<script src="./js/pagination.js"></script>
-  <script> document.addEventListener('DOMContentLoaded', function() {
-    const rowsPerPage = 9; // Số mục trên mỗi trang
-    let currentPage = 1;
-    let totalPages = 1;
-
-    function processUserData(res, containerId) {
-        const apertures = res.data.apertures;
-        if (apertures && Array.isArray(apertures)) {
-            let rows = '';
-            apertures.forEach(aperture => {
-                rows += `
-                <tr>
-                    <td>${aperture.name}</td>
-                    <td>${new Date(aperture.updated_at).toLocaleString()}</td>
-                    <td>
-                        <button class="btn btn-warning" onclick="editsurface('${aperture._id}')"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger" onclick="deletesurface('${aperture._id}')"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-                `;
-            });
-            document.getElementById(containerId).innerHTML = rows;
-            totalPages = Math.ceil(res.data.total / rowsPerPage);
-            renderPagination(currentPage, totalPages, 'pagination', fetchUserData);
-        } else {
-            console.error('Invalid data format:', res);
-        }
-    }
-
-    function fetchUserData(page) {
-    currentPage = page; // Cập nhật currentPage với trang mới được chọn
-    // Sử dụng currentPage ở đây để fetch dữ liệu
-    fetchDataAndDisplay('http://localhost:3456/apertures/', rowsPerPage, currentPage, 'tableRows', processUserData);
-}
-
-    // Gọi hàm fetchUserData để hiển thị dữ liệu ban đầu
-    fetchUserData(currentPage);
-});
-</script>
+<script src="/js/show_modal.js"></script>
 <script src="./js/logout.js"></script>
+<script src="/js/aperture.js"></script>
 </body>
 </html>

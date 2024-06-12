@@ -15,8 +15,8 @@
   <div class="management">
     <div class="management_lf">
       <div class="profile">
-        <img class="profile-ava" src="./asset/images.jpg" alt="">
-        <h1 class="nameuser"></h1>
+        <img id="avatar" class="profile-ava" src="./asset/images.jpg" alt="">
+        <h1 id="nameusershow"></h1>
         <nav>
           <a href="/ad_user.html">Quản lý user</a>
           <a href="/ad_flower.html">Quản lý hoa</a>
@@ -30,6 +30,7 @@
         </nav>
       </div>
     </div>
+    
     <div class="management_rg">
       <div >
         <div class="header">
@@ -38,80 +39,84 @@
           <!-- <div id="notificationcr">Thêm dữ liệu thành công</div> -->
         </div>
         <div class="container mb-4 d-flex" style="justify-content: space-between;">
-          <h1>Quản lý thông các tài khoản</h1>
+          <h1>Quản lý thông tin các tài khoản</h1>
           <div class="d-flex">
             <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm tài khoản...">
             <button id="addFlowerBtn">Thêm mới</button>
           </div>
+          <div id="notification" style="display: none;"></div>
         </div>
+        <table id="flowerTable" class="table table-hover">
+          <thead>
+            <tr>
+              <th>Tên</th>
+              <th>Email</th>
+              <th>Thời gian cập nhật</th>
+              <th>Tính năng</th>
+            </tr>
+            </thead>
+            <tbody id="tableRows">
+              <!-- Các hàng dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+            </tbody>
+        </table>
       </div>
+        <div id="pagination"></div>
+    </div>
 
-      <table id="flowerTable" class="table table-hover">
-        <thead>
-          <tr>
-            <th>Tên</th>
-            <th>Email</th>
-            <th>Thời gian cập nhật</th>
-            <th>Tính năng</th>
-          </tr>
-          </thead>
-          <tbody id="tableRows">
-            <!-- Các hàng dữ liệu sẽ được thêm vào đây bằng JavaScript -->
-          </tbody>
-      </table>
-      <tbody id="tableRows">
-        <!-- Các hàng dữ liệu sẽ được thêm vào đây bằng JavaScript -->
-      </tbody>
-      <div id="pagination"></div>
+      
+      <div class="modal_creatfl modal_cr">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close-add js-modal-close-add">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <header class="modal-header">
+                <h2 class="modal-title">Thêm tài khoản mới</h2>
+            </header>
+    
+            <div class="modal_creatfl_body">
+                <div class="p-2">
+                    <label class="modal-input p-1" for="nameUser">Tên tài khoản</label>
+                    <input type="text" class="modal-input" id="nameUser" placeholder="Nhập tên thường gọi">
+                </div>
+    
+                <div class="p-2">
+                    <label class="modal-input p-1" for="emailUser">Email</label>
+                    <input type="text" class="modal-input" id="emailUser" placeholder="Nhập tên khoa học" autocomplete="off">
+                </div>
+    
+                <div class="p-2">
+                  <div class="d-flex">
+                    <label class="modal-input p-1" for="passwordUser">Mật khẩu</label>
+                  </div>
+                  <input type="text" class="modal-input" id="passwordUser" placeholder="Nhập kích thước hạt phấn" autocomplete="off">
+                </div>
+  
+                <div class="p-2">
+                  <label class="modal-input p-1" for="phonenumber">Số điện thoại</label>
+                  <input type="text" class="modal-input" id="phonenumber" placeholder="Nhập đặc điểm">
+                </div>
+    
+                <!-- <div class="p-2">
+                  <label class="modal-input p-1" for="avatarUser">Ảnh đại diện</label>
+                  <input type="file" class="modal-input" id="avatarUser" placeholder="Chọn ảnh hạt phấn" multiple>
+                  <div id="avatar"></div>
+              </div>
+     -->
+                <div>
+                    <button class="btn_save_cr_flower">Lưu</button>
+                    <button class="btn_update_cr_flower">Lưu1</button>
+                    <button class="btn_exit_cr_flower">Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
+    <div id="notification" style="display: none;">
+      
 <script src="./js/menu_ad.js"></script>
-
-<script src="./js/pagination.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const rowsPerPage = 9 // Số mục trên mỗi trang
-    let currentPage = 1;
-    let totalPages = 1;
-
-    function processUserData(res, containerId) {
-        const users = res.data.users;
-        if (users && Array.isArray(users)) {
-            let rows = '';
-            users.forEach(user => {
-                rows += `
-                    <tr>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                        <td>${new Date(user.updated_at).toLocaleString()}</td>
-                        <td>
-                            <button class="btn btn-warning" onclick="editUser('${user._id}')"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn btn-danger" onclick="deleteUser('${user._id}')"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
-            document.getElementById(containerId).innerHTML = rows;
-            totalPages = Math.ceil(res.data.total / rowsPerPage);
-            renderPagination(currentPage, totalPages, 'pagination', fetchUserData);
-        } else {
-            console.error('Invalid data format:', res);
-        }
-    }
-
-    function fetchUserData(page) {
-    currentPage = page; // Cập nhật currentPage với trang mới được chọn
-
-        // Sử dụng page thay vì currentPage ở đây
-        fetchDataAndDisplay('http://localhost:3456/users/', rowsPerPage, currentPage, 'tableRows', processUserData);
-    }
-
-
-    // Gọi hàm fetchUserData để hiển thị dữ liệu ban đầu
-    fetchUserData(currentPage);
-});
-</script>
+<script src="js/show_modal.js"></script>
+<script src="js/user.js"></script>
+<script src="./js/show_nameuser_login.js"></script>
 <script src="./js/logout.js"></script>
 </body>
 </html>

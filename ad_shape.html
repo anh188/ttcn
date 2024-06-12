@@ -16,7 +16,7 @@
     <div class="management_lf">
       <div class="profile">
         <img class="profile-ava" src="./asset/images.jpg" alt="">
-        <h1 class="nameuser"></h1>
+        <h1 id="nameusershow"></h1>
         <nav>
           <a href="/ad_user.html">Quản lý user</a>
           <a href="/ad_flower.html">Quản lý hoa</a>
@@ -60,50 +60,34 @@
       </table>
       <!-- <div id="userList"></div> -->
       <div id="pagination"></div>
+      <div class="modal_creatfl modal_cr">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close-add js-modal-close-add">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <header class="modal-header">
+                <h2 class="modal-title">Thêm họ mới</h2>
+            </header>
+    
+            <div class="modal_creatfl_body">
+                <div class="p-2">
+                    <label class="modal-input p-1" for="shapename">họ</label>
+                    <input type="text" class="modal-input" id="shapename" placeholder="Nhập họ">
+                </div>   
+                <div>
+                    <button class="btn_save_cr_flower">Lưu</button>
+                    <button class="btn_update_cr_flower">Lưu1</button>
+                    <button class="btn_exit_cr_flower">Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="notification" style="display: none;">
 
-
-
+<script src="./js/show_nameuser_login.js"></script>
+<script src="/js/show_modal.js"></script>
 <script src="./js/menu_ad.js"></script>
-<script src="./js/pagination.js"></script>
-  <script> document.addEventListener('DOMContentLoaded', function() {
-    const rowsPerPage = 9; // Số mục trên mỗi trang
-    let currentPage = 1;
-    let totalPages = 1;
-
-    function processUserData(res, containerId) {
-        const shapes = res.data.shapes;
-        if (shapes && Array.isArray(shapes)) {
-            let rows = '';
-            shapes.forEach(shape => {
-                rows += `
-                <tr>
-                    <td>${shape.name}</td>
-                    <td>${new Date(shape.updated_at).toLocaleString()}</td>
-                    <td>
-                        <button class="btn btn-warning" onclick="editshape('${shape._id}')"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger" onclick="deleteshape('${shape._id}')"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-                `;
-            });
-            document.getElementById(containerId).innerHTML = rows;
-            totalPages = Math.ceil(res.data.total / rowsPerPage);
-            renderPagination(currentPage, totalPages, 'pagination', fetchUserData);
-        } else {
-            console.error('Invalid data format:', res);
-        }
-    }
-
-    function fetchUserData(page) {
-    currentPage = page; // Cập nhật currentPage với trang mới được chọn
-    // Sử dụng currentPage ở đây để fetch dữ liệu
-    fetchDataAndDisplay('http://localhost:3456/shapes/', rowsPerPage, currentPage, 'tableRows', processUserData);
-}
-
-    // Gọi hàm fetchUserData để hiển thị dữ liệu ban đầu
-    fetchUserData(currentPage);
-});
-</script>
 <script src="./js/logout.js"></script>
+<script src="js/shape.js"></script>
 </body>
 </html>

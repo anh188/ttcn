@@ -149,6 +149,9 @@ button.delete {
 
 .management_rg{
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 .flowerTable{
   margin-left: 20px !important;
@@ -156,11 +159,13 @@ button.delete {
 
 .management{
   display: flex !important;
-  /* height: 00vh; */
+  /* height: 100vh; */
+  min-height: 100vh;
 }
 .profile-ava{
   border-radius: 50%;
   margin: 10px;
+  height: 200px;
 }
 .profile nav a{
   display: block;
@@ -191,9 +196,9 @@ a{
   background-color: #fff;
   width: 800px;
   max-width: calc(100% - 32px);
-  /* min-height: 200px; */
+  min-height: 300px;
   position: relative;
-  height: 700px;
+  max-height: 700px;
   overflow-y: auto;
   scrollbar-width: thin; /* Chỉ hiện thanh cuộn khi cần */
   scrollbar-color: #ccc #f1f1f1; /* Màu thanh cuộn và màu nền */

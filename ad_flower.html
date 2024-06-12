@@ -15,7 +15,7 @@
     <div class="management_lf" style="background: #5DA452;">
       <div class="profile">
         <img class="profile-ava" src="./asset/images.jpg" alt="">
-        <h1 class="nameuser"></h1>
+        <h1 id="nameusershow"></h1>
         <nav>
           <a href="/ad_user.html">Quản lý user</a>
           <a href="/ad_flower.html">Quản lý hoa</a>
@@ -31,7 +31,6 @@
     </div>
     <div class="management_rg">
       <div >
-        
         <div class="header">
           <div id="notificationcr"></div>
           <!-- <div id="notificationcr">Xóa dữ liệu thành công</div> -->
@@ -46,32 +45,30 @@
             <button id="addFlowerBtn">Thêm mới</button>
           </div>
         </div>
+        <table id="flowerTable" class="">
+          <thead>
+            <tr>
+              <th>Ảnh hoa</th>
+              <th>Tên hoa</th>
+              <th>Tên khoa học</th>
+              <th>Kích thước</th>
+              <th>Bộ</th>
+              <th>Họ</th>
+              <th>Chi</th>
+              <th>Hình dạng</th>
+              <th>Bề mặt</th>
+              <th>Phần</th>
+              <th>Loại độ khẩu</th>
+              <th>Ảnh hạt phấn</th>
+              <th>Thời gian update</th>
+              <th>Tính năng</th>
+            </tr>
+            </thead>
+            <tbody id="tableRows">
+              <!-- Các hàng dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+            </tbody>
+        </table>
       </div>
-
-      <table id="flowerTable" class="">
-        <thead>
-          <tr>
-            <th>Ảnh hoa</th>
-            <th>Tên hoa</th>
-            <th>Tên khoa học</th>
-            <th>Kích thước</th>
-            <th>Bộ</th>
-            <th>Họ</th>
-            <th>Chi</th>
-            <th>Hình dạng</th>
-            <th>Bề mặt</th>
-            <th>Phần</th>
-            <th>Loại độ khẩu</th>
-            <th>Ảnh hạt phấn</th>
-            <th>Thời gian update</th>
-            <th>Tính năng</th>
-          </tr>
-          </thead>
-          <tbody id="tableRows">
-            <!-- Các hàng dữ liệu sẽ được thêm vào đây bằng JavaScript -->
-          </tbody>
-      </table>
-
       <nav aria-label="Page navigation">
         <ul class="pagination" id="pagination">
           <!-- Các nút trang sẽ được tạo ở đây -->
@@ -107,7 +104,12 @@
                   <button id="add-micron">µm</button>
                 </div>
                 <input type="text" class="modal-input" id="pollen-size" placeholder="Nhập kích thước hạt phấn">
-            </div>
+              </div>
+
+              <div class="p-2">
+                <label class="modal-input p-1" for="characteristics">Đặc điểm</label>
+                <input type="text" class="modal-input" id="characteristics" placeholder="Nhập đặc điểm">
+              </div>
   
               <div class="p-2">
                   <label class="modal-input p-1" for="order">Bộ</label>
@@ -162,10 +164,17 @@
                 <input type="file" class="modal-input" id="pollen-image" placeholder="Chọn ảnh hạt phấn" multiple>
                 <div id="pollen-image-preview"></div>
             </div>
+            <div class="p-2">
+              <label class="modal-input p-1" for="downloadlink_fl">Link download kho ảnh</label>
+              <input type="text" class="modal-input" id="downloadlink_fl" placeholder="Nhập link" multiple>
+              <div id="pollen-image-preview"></div>
+          </div>
+
   
               <div>
                   <button class="btn_save_cr_flower">Lưu</button>
-                  <button class="btn_exit_cr_flower">Thoát</button>
+                    <button class="btn_update_cr_flower">Lưu1</button>
+                    <button class="btn_exit_cr_flower">Thoát</button>
               </div>
           </div>
       </div>
@@ -261,10 +270,13 @@
     </div>
 </div> -->
   <!-- <button class="btn btn-warning" onclick="editFlower('flowerId')"><i class="fa-solid fa-pen-to-square"></i></button> -->
+  <script src="./js/show_nameuser_login.js"></script>
 
 <script src="./js/ad_delete_fl.js"></script>
 <script src="./js/ad_creat_fl.js"></script>
 <script src="./js/ad_modal_cr_fl.js"></script>
+<script src="/js/show_modal.js"></script>
+
 <script>
 
 let timeoutId; // Biến để lưu ID của timer

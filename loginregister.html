@@ -47,7 +47,7 @@
         <form id="loginForm" action="#">
           <h2>Đăng nhập</h2>
 
-          <div class="input-box">
+          <div class="input-box" id="emailForm">
             <span class="icon"><i class='bx bxs-envelope'></i></span>
             <input type="email" required autocomplete="username" id="usernamelg" >
             <label>Email</label>
@@ -124,7 +124,7 @@
   <!-- <script src="./api/apilogin.js"> </script> -->
 <!-- <script src="./api/apiregister.js"></script> -->
 <script>
-  document.getElementById('loginForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Ngăn chặn hành động mặc định của form
 
     const email = document.getElementById('usernamelg').value;
@@ -140,20 +140,25 @@
     })
     .then(response => response.json())
     .then(data => {
-    // Xử lý phản hồi từ API
-    if (data.status === 200 && data.error === false) {
-        // Lưu token vào Local Storage
-        localStorage.setItem('accessToken', data.data.access_token);
-        // Log ra token
-        console.log('Access Token:', data.data.access_token);
-        // Chuyển hướng sang trang ad_user.html
-        window.location.href = 'ad_user.html';
-    } else {
-        // Xử lý khi đăng nhập thất bại (hiển thị thông báo lỗi, vv.)
-        alert('Đăng nhập không thành công. Vui lòng kiểm tra lại tài khoản và mật khẩu.');
-    }
-})
-  });
+        // Xử lý phản hồi từ API
+        if (data.status === 200 && data.error === false) {
+            // Lưu token vào Local Storage
+            localStorage.setItem('accessToken', data.data.access_token);
+            // localStorage.setItem('username', username);
+            // Log ra token
+            console.log('Access Token:', data.data.access_token);
+            // Chuyển hướng sang trang ad_user.html
+            window.location.href = 'ad_user.html';
+        } else {
+            // Xử lý khi đăng nhập thất bại (hiển thị thông báo lỗi, vv.)
+            alert('Đăng nhập không thành công. Vui lòng kiểm tra lại tài khoản và mật khẩu.');
+        }
+    })
+    .catch(error => {
+        console.error('Error logging in:', error);
+        alert('Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại sau.');
+    });
+});
 </script>
 </body>
 </html>

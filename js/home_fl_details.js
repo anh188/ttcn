@@ -10,9 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('chi').textContent = selectedFlower.set_id?.name || '';
     document.getElementById('hinhDangPhanHoa').textContent = selectedFlower.shape_id?.name || '';
     document.getElementById('kichThuocPhanHoa').textContent = selectedFlower.size || '';
+    document.getElementById('dacDiem').textContent = selectedFlower.characteristics || '';
+    // document.getElementById('linkdownload').textContent = selectedFlower.downloadlink || '';
     document.getElementById('beMatPhanHoa').textContent = selectedFlower.surface_id?.name || '';
     document.getElementById('phan').textContent = selectedFlower.part_id?.name || '';
     document.getElementById('loaiDoKhau').textContent = selectedFlower.aperture_id?.name || '';
+
+    const downloadlink = document.getElementById('linkdownload');
+        downloadlink.href = selectedFlower.downloadlink || '#';
+        downloadlink.target = "_blank";
+    
 
     // Set flower images
     const flowerImagesWrapper = document.getElementById('flowerImagesWrapper');

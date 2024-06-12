@@ -9,6 +9,9 @@ a:focus {
   color: #5DA452; /* Màu trắng */
   
 }
+.management_lf {
+  max-width: 220px;
+}
 #logoutButton {
   position: absolute;
   right: 40px;
@@ -30,6 +33,7 @@ a:focus {
 #pagination {
   display: flex;
   justify-content: center;
+  margin: 20px;
 }
 button.btn.btn-primary {
   margin: 0 0 0 2px;
@@ -55,3 +59,7 @@ button.btn.btn-primary {
   flex-direction: column;
   justify-content: space-between;
 } */
+
+h1#nameusershow {
+  color: white !important;
+}

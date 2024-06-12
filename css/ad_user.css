@@ -1,5 +1,8 @@
 .management_rg {
   width: 100%;
+  display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 .management_lf {
   height: 100vh;
@@ -7,4 +10,8 @@
 .management_lf {
   height: 100vh;
   background: #5DA452;
+  max-width: 220px;
+}
+.modal-container {
+  width: 450px;
 }

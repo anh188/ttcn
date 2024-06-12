@@ -1,19 +1,19 @@
 const logregBox = document.querySelector('.logreg-box');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
+// const loginLink = document.querySelector('.login-link');
+// const registerLink = document.querySelector('.register-link');
 const forms = document.querySelectorAll('form');
 
-registerLink.addEventListener('click', () => {
-  logregBox.classList.add('active');
-  // Xóa tất cả các giá trị đã nhập trong các trường input
-  forms.forEach(form => form.reset());
-});
+// registerLink.addEventListener('click', () => {
+//   logregBox.classList.add('active');
+//   // Xóa tất cả các giá trị đã nhập trong các trường input
+//   forms.forEach(form => form.reset());
+// });
 
-loginLink.addEventListener('click', () => {
-  logregBox.classList.remove('active');
-  // Xóa tất cả các giá trị đã nhập trong các trường input
-  forms.forEach(form => form.reset());
-});
+// loginLink.addEventListener('click', () => {
+//   logregBox.classList.remove('active');
+//   // Xóa tất cả các giá trị đã nhập trong các trường input
+//   forms.forEach(form => form.reset());
+// });
 
 document.addEventListener('DOMContentLoaded', function () {
   const togglePasswordList = document.querySelectorAll('.toggle-password');
