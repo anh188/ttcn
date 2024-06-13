@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
   const saveButton = document.querySelector('.btn_save_cr_flower');
 
-  // Hàm để mở modal và điền các trường dữ liệu
   window.editFlower = function (flowerId) {
     fetch(`http://localhost:3456/flowers/${flowerId}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
         const flowerData = data.data;
-
+  
         // Cập nhật tiêu đề modal
         const modalTitle = document.querySelector('.modal-title');
         if (modalTitle) {
@@ -19,11 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error('Không tìm thấy phần tử tiêu đề modal');
           return;
         }
-
-        // Thay đổi class của nút "Lưu"
-        saveButton.classList.remove('btn_save_cr_flower');
-        saveButton.classList.add('btn_save_up_flower');
-
+  
         // Điền dữ liệu vào các trường input
         document.getElementById('common-name').value = flowerData.name;
         document.getElementById('scientific-name').value = flowerData.science_name;
@@ -35,33 +30,37 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('pollen-surface').value = flowerData.surface_id.name;
         document.getElementById('part').value = flowerData.part_id.name;
         document.getElementById('aperture-type').value = flowerData.aperture_id.name;
-
+        document.getElementById('downloadlink_fl').value = flowerData.downloadlink;
+        document.getElementById('characteristics').value = flowerData.characteristics;
+  
         // Hiển thị ảnh phấn hoa
         const pollenImagePreview = document.getElementById('pollen-image-preview');
         pollenImagePreview.innerHTML = '';
         flowerData.pollen_grain_images.forEach(image => {
           const img = document.createElement('img');
-          img.src = image;
+          img.src = `http://localhost:3456/static/${image}`;
           img.alt = 'Pollen Image';
+          img.classList.add('selected-image'); // Add CSS class for styling if needed
           pollenImagePreview.appendChild(img);
         });
-
+  
         // Hiển thị hình ảnh hoa
         const flowerImagePreview = document.getElementById('flower-image-preview');
         flowerImagePreview.innerHTML = '';
         flowerData.flower_images.forEach(image => {
           const img = document.createElement('img');
-          img.src = image;
+          img.src = `http://localhost:3456/static/${image}`;
           img.alt = 'Flower Image';
+          img.classList.add('selected-image'); // Add CSS class for styling if needed
           flowerImagePreview.appendChild(img);
         });
-
+  
         // Thêm sự kiện preview hình ảnh
         const pollenImageInput = document.getElementById('pollen-image');
         if (pollenImageInput) {
           pollenImageInput.addEventListener('change', previewImage);
         }
-
+  
         // Mở modal
         const modal = document.querySelector('.modal_creatfl');
         if (modal) {
@@ -74,12 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Lỗi khi lấy dữ liệu hoa:', error);
       });
   };
-
+  
   // Hàm preview hình ảnh
   function previewImage(event) {
     const preview = document.getElementById('pollen-image-preview');
     preview.innerHTML = ''; // Xóa hình ảnh hiện tại (nếu có)
-
+  
     const files = event.target.files;
     for (const file of files) {
       const reader = new FileReader();

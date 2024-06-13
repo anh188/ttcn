@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/search.css"> -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+      .fixed-search {
+    background: white !important;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out !important;
+}
+.search{
+  margin-bottom: 0;
+}
+    </style>
+</head>
+<body>
+  <header class="header" style="background-color: #45532A;">
+    <nav class="navbar">
+      <a href="home.html">Trang chủ</a>
+      <a href="contact.html">Giới thiệu</a>
+      <!-- <a href="contact.html">Liên hệ</a> -->
+      <!-- <a href="#">Contact</a> -->
+    </nav>
+    <div class="search">
+      <div class="search-container fixed-search">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+        <button type="button" id="searchButton"><i class='bx bx-search'></i></button>
+      </div>  
+    </div>
+      <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
+  </header>
+  <ul id="gallery">
+    <!-- Các mục hoa sẽ được thêm vào đây -->
+</ul>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const setId = urlParams.get('setId');
+
+    if (setId) {
+        renderFlowersBySet(setId);
+    } else {
+        console.error('Không tìm thấy ID của set trong URL.');
+    }
+
+    async function renderFlowersBySet(setId) {
+        try {
+            const flowers = await fetchFlowersBySet(setId);
+
+            if (!Array.isArray(flowers)) {
+                console.error('Expected an array of flowers, but got:', flowers);
+                return;
+            }
+
+            const flowerList = document.getElementById('gallery');
+            if (!flowerList) {
+                console.error('Flower list element not found.');
+                return;
+            }
+
+            flowerList.innerHTML = ''; // Xóa các mục danh sách hoa hiện có
+
+            flowers.forEach(flower => {
+                const listItem = document.createElement('li');
+
+                // Hiển thị tên hoa
+                const nameElement = document.createElement('p');
+                nameElement.textContent = flower.name;
+                listItem.appendChild(nameElement);
+
+                // Hiển thị hình ảnh hoa (nếu có)
+                  // Hiển thị hình ảnh hoa (nếu có)
+            if (flower.flower_images && flower.flower_images.length > 0) {
+                const imgElement = document.createElement('img');
+                const image = flower.flower_images[0]; // Lấy đường dẫn ảnh đầu tiên trong danh sách flower_images
+                imgElement.src = `http://localhost:3456/static/${image}`; // Gán đường dẫn cho src của ảnh
+                imgElement.alt = `${flower.name} Image`; // Alt cho ảnh (tùy chọn)
+                listItem.appendChild(imgElement);
+            }
+                  flowerList.appendChild(listItem);
+            });
+        } catch (error) {
+            console.error('Error rendering flowers by set:', error);
+        }
+    }
+
+    // Hàm fetchFlowersBySet để lấy dữ liệu hoa từ server
+    async function fetchFlowersBySet(setId) {
+        try {
+            const response = await fetch(`http://localhost:3456/flowers/sets/${setId}/flowers`);
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+
+            const data = await response.json();
+            return data.data; // Trả về chỉ dữ liệu flowers từ object response
+        } catch (error) {
+            console.error('Error fetching flowers by set:', error);
+            throw error; // Ném lại lỗi để được xử lý ở nơi gọi hàm này
+        }
+    }
+
+    // // Event listener cho nút tìm kiếm
+    // const searchButton = document.getElementById('searchButton');
+
+    // if (searchButton) {
+    //     searchButton.addEventListener('click', async () => {
+    //         const searchInput = document.getElementById('searchInput').value.trim();
+
+    //         if (searchInput) {
+    //             try {
+    //                 const flowers = await fetchFlowersBySet(searchInput);
+    //                 renderFlowersOnUI(flowers);
+    //             } catch (error) {
+    //                 console.error('Error fetching or rendering flowers:', error);
+    //                 // Thay vì in ra console, bạn có thể hiển thị một thông báo lỗi trên giao diện người dùng
+    //             }
+    //         } else {
+    //             console.error('Empty search input.');
+    //             // Thay vì in ra console, bạn có thể hiển thị một thông báo trên giao diện người dùng
+    //         }
+    //     });
+    // } else {
+    //     console.error('Search button not found.');
+    //     // Thay vì in ra console, bạn có thể hiển thị một thông báo lỗi trên giao diện người dùng
+    // }
+});
+  </script>
+  <script src="/js/home.js"></script>
+  </body>
+  </html>

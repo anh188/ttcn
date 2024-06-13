@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="./css/home.css">
   <!-- <link rel="stylesheet" href="/css/homepage.css"> -->
   <link rel="stylesheet" href="css/style.css">    
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+
   <style>
     #searchContainer{
       background-color: #fff;
@@ -32,54 +34,57 @@
       <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
   </header>
 
-  <div class="details-container">
-    <h1 style="margin-left: 80px;">Chi tiết thông tin hoa</h1>
+  <div class="details-container d-block">
     <div class="details">
+    <h1 class="container" style="margin-left: 80px;"><span id="tenThuongGoi"></h1>
      
-
-      <div class="img-lf-pl">
-        <!-- <p><strong>Ảnh hoa:</strong></p> -->
-        <div class="flower-images-container">
-          <div class="swiper mySwiper2">
-            <div class="swiper-wrapper" id="flowerImagesWrapper"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-          </div>
-          <div thumbsSlider="" class="swiper mySwiper">
-            <div class="swiper-wrapper" id="flowerImagesThumbs"></div>
-          </div>
-        </div>        
-        <p><strong>Ảnh hạt phấn:</strong></p>
-
-          <!-- <div class="pollen-images-container">
+      <div class="d-flex detail-content">
+        <div class="img-lf-pl">
+          <!-- <p><strong>Ảnh hoa:</strong></p> -->
+          <div class="flower-images-container">
             <div class="swiper mySwiper2">
-              <div class="swiper-wrapper" id="pollenImagesWrapper"></div>
+              <div class="swiper-wrapper" id="flowerImagesWrapper"></div>
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
             </div>
             <div thumbsSlider="" class="swiper mySwiper">
-              <div class="swiper-wrapper" id="pollenImagesThumbs"></div>
+              <div class="swiper-wrapper" id="flowerImagesThumbs"></div>
             </div>
-          </div>      -->
-        </div>
-        <div class="if-rg">
-          <p><strong>Tên thường gọi:</strong> <span id="tenThuongGoi"></span></p>
-          <p><strong>Tên khoa học:</strong> <span id="tenKhoaHoc"></span></p>
-          <p><strong>Kích thước phấn hoa:</strong> <span id="kichThuocPhanHoa"></span></p>
-          <p><strong>Đặc điểm:</strong> <span id="dacDiem"></span></p>
-          <p><strong>Bộ:</strong> <span id="bo"></span></p>
-          <p><strong>Họ:</strong> <span id="ho"></span></p>
-          <p><strong>Chi:</strong> <span id="chi"></span></p>
-          <p><strong>Hình dạng phấn hoa:</strong> <span id="hinhDangPhanHoa"></span></p>
-          <p><strong>Bề mặt phấn hoa:</strong> <span id="beMatPhanHoa"></span></p>
-          <p><strong>Phần:</strong> <span id="phan"></span></p>
-          <p><strong>Loại độ khẩu:</strong> <span id="loaiDoKhau"></span></p>
-          <!-- <p><strong>Link tải dữ liệu ảnh:</strong> <span id="linkdownload"></span></p> -->
-          <p><strong>link:
-            <a id="linkdownload" href="#" target="_blank">Download kho ảnh</a>
-          </strong></p>
-          <!-- <a id="linkdownload" href="#" target="_blank">Download kho ảnh</a> -->
-        </div>
+          </div>        
+          
+          </div>
+          <div class="if-rg">
+            <!-- <p><strong>Tên thường gọi:</strong> <span id="tenThuongGoi"></span></p> -->
+            <p><strong>Tên khoa học:</strong> <span id="tenKhoaHoc"></span></p>
+            <p><strong>Kích thước phấn hoa:</strong> <span id="kichThuocPhanHoa"></span></p>
+            <p><strong>Đặc điểm:</strong> <span id="dacDiem"></span></p>
+            <p><strong>Bộ:</strong> <span id="bo"></span></p>
+            <p><strong>Họ:</strong> <span id="ho"></span></p>
+            <p><strong>Chi:</strong> <span id="chi"></span></p>
+            <p><strong>Hình dạng phấn hoa:</strong> <span id="hinhDangPhanHoa"></span></p>
+            <p><strong>Bề mặt phấn hoa:</strong> <span id="beMatPhanHoa"></span></p>
+            <p><strong>Phần:</strong> <span id="phan"></span></p>
+            <p><strong>Loại khẩu độ:</strong> <span id="loaiDoKhau"></span></p>
+            <!-- <p><strong>Link tải dữ liệu ảnh:</strong> <span id="linkdownload"></span></p> -->
+            <p><strong>Link:
+              <a id="linkdownload" href="#" target="_blank">Download kho ảnh hạt phấn</a>
+            </strong></p>
+            <p><strong>Ảnh hạt phấn:</strong></p>
+
+            <div class="pollen-images-container">
+              <div class="swiper mySwiper2">
+                <div class="swiper-wrapper" id="pollenImagesWrapper"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+              <div thumbsSlider="" class="swiper mySwiper">
+                <div class="swiper-wrapper" id="pollenImagesThumbs"></div>
+              </div>
+            </div> 
+            <!-- <a id="linkdownload" href="#" target="_blank">Download kho ảnh</a> -->
+          </div>
+      </div>
+      
     </div>
   </div>
 

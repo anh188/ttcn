@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(url)
       .then(response => response.json())
       .then(data => {
+        // Truy xuất giá trị "total" từ dữ liệu API
+        const totalFlowers = data.data.total;
+
+        // Cập nhật nội dung phần tử HTML
+        document.getElementById('total-count').textContent = totalFlowers;
         const flowers = data.data.flowers;
         const galleryContainer = document.getElementById('gallery');
         galleryContainer.innerHTML = ''; // Clear the gallery

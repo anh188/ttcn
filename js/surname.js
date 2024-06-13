@@ -171,70 +171,137 @@ function resetForm() {
     btnUpdate.style.display = 'none';
 }
 
-// Xử lý sự kiện khi người dùng nhấp vào nút chỉnh sửa
-window.editsurnames = function(surnameId) {
-    fetch(`http://localhost:3456/surnames/${surnameId}`)
-        .then(response => response.json())
-        .then(data => {
-            const surnameName = data.data;
+// // Xử lý sự kiện khi người dùng nhấp vào nút chỉnh sửa
+// window.editsurnames = function(surnameId) {
+//     fetch(`http://localhost:3456/surnames/${surnameId}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             const surnameName = data.data;
 
-            // Cập nhật tiêu đề modal
-            modalTitle.textContent = 'Chỉnh sửa họ';
+//             // Cập nhật tiêu đề modal
+//             modalTitle.textContent = 'Chỉnh sửa họ';
 
-            // Cập nhật giá trị của input
-            document.getElementById('namesurname').value = surnameName.name;
+//             // Cập nhật giá trị của input
+//             document.getElementById('namesurname').value = surnameName.name;
 
-            // Ẩn nút "Thêm mới", hiển thị nút "Lưu"
-            btnSave.style.display = 'none';
-            btnUpdate.style.display = 'inline-block'; // Hiển thị nút "Lưu" khi chỉnh sửa
+//             // Ẩn nút "Thêm mới", hiển thị nút "Lưu"
+//             btnSave.style.display = 'none';
+//             btnUpdate.style.display = 'inline-block'; // Hiển thị nút "Lưu" khi chỉnh sửa
 
-            // Mở modal
-            openModal();
-        })
-        .catch(error => {
-            console.error('Error fetching set:', error);
-            alert('Có lỗi xảy ra, vui lòng thử lại.');
-        });
-        btnUpdate.addEventListener('click', function() {
-    const newName = document.getElementById('namesurname').value;
+//             // Mở modal
+//             openModal();
+//         })
+//         .catch(error => {
+//             console.error('Error fetching set:', error);
+//             alert('Có lỗi xảy ra, vui lòng thử lại.');
+//         });
+//         btnUpdate.addEventListener('click', function() {
+//     const newName = document.getElementById('namesurname').value;
 
-    // Tạo đối tượng dữ liệu mới cần cập nhật
-    const newData = {
-        name: newName
-        // Thêm các trường dữ liệu khác cần cập nhật nếu có
-    };
+//     // Tạo đối tượng dữ liệu mới cần cập nhật
+//     const newData = {
+//         name: newName
+//         // Thêm các trường dữ liệu khác cần cập nhật nếu có
+//     };
 
-    fetch(`http://localhost:3456/surnames/${surnameId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Update Response:', data);
-        // Kiểm tra nếu cập nhật thành công
-        if (!data.error) {
-            alert('Cập nhật thông tin thành công!');
-            // Đóng modal sau khi cập nhật thành công
-            closeModal();
-            fetchUserData(currentPage); // Tải lại dữ liệu sau khi xóa
-        } else {
-            alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại.');
-        }
-    })
-    .catch(error => {
-        console.error('Error updating set:', error);
-        alert('Có lỗi xảy ra, vui lòng thử lại.');
-    });
-});
-};
+//     fetch(`http://localhost:3456/surnames/${surnameId}`, {
+//         method: 'PUT',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(newData)
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log('Update Response:', data);
+//         // Kiểm tra nếu cập nhật thành công
+//         if (!data.error) {
+//             alert('Cập nhật thông tin thành công!');
+//             // Đóng modal sau khi cập nhật thành công
+//             closeModal();
+//             fetchUserData(currentPage); 
+//         } else {
+//             alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại.');
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error updating set:', error);
+//         alert('Có lỗi xảy ra, vui lòng thử lại.');
+//     });
+// });
+// };
 
 // Xử lý sự kiện khi người dùng nhấn vào nút "Lưu" sau khi chỉnh sửa
 
 
 // Xử lý sự kiện khi người dùng nhấn vào nút "Thoát"
+
+window.editsurnames = function(surnameId) {
+  fetch(`http://localhost:3456/surnames/${surnameId}`)
+      .then(response => response.json())
+      .then(data => {
+          const surnameName = data.data;
+
+          // Cập nhật tiêu đề modal
+          modalTitle.textContent = 'Chỉnh sửa họ';
+
+          // Cập nhật giá trị của input
+          document.getElementById('namesurname').value = surnameName.name;
+
+          // Ẩn nút "Thêm mới", hiển thị nút "Lưu"
+          btnSave.style.display = 'none';
+          btnUpdate.style.display = 'inline-block'; // Hiển thị nút "Lưu" khi chỉnh sửa
+
+          // Lưu lại id của surname hiện tại
+          currentSurnameId = surnameId;
+
+          // Mở modal
+          openModal();
+      })
+      .catch(error => {
+          console.error('Error fetching set:', error);
+          alert('Có lỗi xảy ra, vui lòng thử lại.');
+      });
+};
+
+// Đăng ký sự kiện click cho nút btnUpdate
+btnUpdate.addEventListener('click', function() {
+  if (currentSurnameId === null) return;
+
+  const newName = document.getElementById('namesurname').value;
+
+  // Tạo đối tượng dữ liệu mới cần cập nhật
+  const newData = {
+      name: newName
+      // Thêm các trường dữ liệu khác cần cập nhật nếu có
+  };
+
+  fetch(`http://localhost:3456/surnames/${currentSurnameId}`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newData)
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Update Response:', data);
+      // Kiểm tra nếu cập nhật thành công
+      if (!data.error) {
+          alert('Cập nhật thông tin thành công!');
+          // Đóng modal sau khi cập nhật thành công
+          closeModal();
+          fetchUserData(currentPage); 
+      } else {
+          alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại.');
+      }
+  })
+  .catch(error => {
+      console.error('Error updating set:', error);
+      alert('Có lỗi xảy ra, vui lòng thử lại.');
+  });
+});
+
 btnExit.addEventListener('click', function() {
     // Đóng modal
     closeModal();

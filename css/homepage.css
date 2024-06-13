@@ -26,6 +26,7 @@ color: #45532A;
 span.messages-btnsearch {
   position: absolute;
   top: 30%;
+  font-size: 20px;
 }
 .header{
   top: 0;
