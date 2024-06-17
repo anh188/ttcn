@@ -34,7 +34,7 @@ html{
 
 .header{
 
-  padding: 25px 12.5%;
+  padding: 10px 12.5%;
   /* background: #191A19; */
   display: flex;
   justify-content: space-between;
@@ -44,9 +44,6 @@ html{
   /* background-color: #45532A; */
   
 }
-
-
-
 .navbar a{
   /* text-shadow: 1px 1px 5px rgba(0, 0.5, 1, 1); */
   position: relative;
@@ -73,7 +70,7 @@ html{
 
 .navbar{
 
-  padding: 15px;
+  /* padding: 15px; */
   display: flex;
   justify-content: space-between;
   align-items: center;

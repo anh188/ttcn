@@ -188,6 +188,9 @@ window.editapertures = function(apertureId) {
             btnSave.style.display = 'none';
             btnUpdate.style.display = 'inline-block'; // Hiển thị nút "Lưu" khi chỉnh sửa
 
+            // Lưu lại id của surname hiện tại
+            currentApertureId = apertureId;
+
             // Mở modal
             openModal();
         })
@@ -195,41 +198,47 @@ window.editapertures = function(apertureId) {
             console.error('Error fetching set:', error);
             alert('Có lỗi xảy ra, vui lòng thử lại.');
         });
-        btnUpdate.addEventListener('click', function() {
-    const newName = document.getElementById('aperturename').value;
+      };
 
-    // Tạo đối tượng dữ liệu mới cần cập nhật
-    const newData = {
-        name: newName
-        // Thêm các trường dữ liệu khác cần cập nhật nếu có
-    };
+      
+// Đăng ký sự kiện click cho nút btnUpdate
+btnUpdate.addEventListener('click', function() {
+  if (currentApertureId === null) return;
 
-    fetch(`http://localhost:3456/apertures/${apertureId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Update Response:', data);
-        // Kiểm tra nếu cập nhật thành công
-        if (!data.error) {
-            alert('Cập nhật thông tin thành công!');
-            // Đóng modal sau khi cập nhật thành công
-            closeModal();
-            fetchUserData(currentPage); // Tải lại dữ liệu sau khi xóa
-        } else {
-            alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại.');
-        }
-    })
-    .catch(error => {
-        console.error('Error updating set:', error);
-        alert('Có lỗi xảy ra, vui lòng thử lại.');
-    });
+  const newName = document.getElementById('aperturename').value;
+
+  // Tạo đối tượng dữ liệu mới cần cập nhật
+  const newData = {
+      name: newName
+      // Thêm các trường dữ liệu khác cần cập nhật nếu có
+  };
+
+  fetch(`http://localhost:3456/apertures/${currentApertureId}`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newData)
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Update Response:', data);
+      // Kiểm tra nếu cập nhật thành công
+      if (!data.error) {
+          alert('Cập nhật thông tin thành công!');
+          // Đóng modal sau khi cập nhật thành công
+          closeModal();
+          fetchUserData(currentPage); 
+      } else {
+          alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại.');
+      }
+  })
+  .catch(error => {
+      console.error('Error updating set:', error);
+      alert('Có lỗi xảy ra, vui lòng thử lại.');
+  });
 });
-};
+
 
 // Xử lý sự kiện khi người dùng nhấn vào nút "Lưu" sau khi chỉnh sửa
 

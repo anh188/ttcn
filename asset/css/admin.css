@@ -165,7 +165,7 @@ button.delete {
 .profile-ava{
   border-radius: 50%;
   margin: 10px;
-  height: 160px;
+  height: 170px;
 }
 .profile nav a{
   display: block;
@@ -258,8 +258,8 @@ a{
 
 .delete-btn {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: 0px;
+  right: -1px;
   width: 20px;
   height: 20px;
   background-color: red;
@@ -273,5 +273,8 @@ a{
 }
 
 .image-container img {
-  max-width: 100px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 5px;
 }

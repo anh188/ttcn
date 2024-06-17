@@ -18,14 +18,14 @@
         <h1 id="nameusershow"></h1>
         <nav>
           <a href="/ad_user.html">Quản lý user</a>
-          <a href="/ad_flower.html">Quản lý hoa</a>
+          <a href="/ad_flower.html">Quản lý Loài hoa</a>
           <a href="/ad_set.html">Quản lý Bộ</a>
-          <a href="/ad_genus.html">Quản lý Chi</a>
           <a href="/ad_surname.html">Quản lý Họ</a>
+          <a href="/ad_genus.html">Quản lý Chi</a>
           <a href="/ad_shape.html">Quản lý Hình dạng</a>
           <a href="/ad_surface.html">Quản lý Bề mặt</a>
           <a href="/ad_aperture.html">Quản lý Loại khẩu độ</a>
-          <a href="/ad_part.html">Quản lý Phần</a>
+          <!-- <a href="/ad_part.html">Quản lý Phần</a> -->
         </nav>
       </div>
     </div>
@@ -39,7 +39,7 @@
           <!-- <div id="notificationcr">Thêm dữ liệu thành công</div> -->
         </div>
         <div class="container mb-4 d-flex" style="justify-content: space-between;">
-          <h1>Quản lý thông tin hoa</h1>
+          <h1>Quản lý thông tin Loài hoa</h1>
           <div class="d-flex">
             <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm tên hoa...">
             <button id="addFlowerBtn">Thêm mới</button>
@@ -57,7 +57,7 @@
               <th>Chi</th>
               <th>Hình dạng</th>
               <th>Bề mặt</th>
-              <th>Phần</th>
+              <!-- <th>Phần</th> -->
               <th>Loại khẩu độ</th>
               <th>Ảnh hạt phấn</th>
               <th>Thời gian update</th>
@@ -169,9 +169,15 @@
               <input type="text" class="modal-input" id="downloadlink_fl" placeholder="Nhập link" multiple>
               <!-- <div id="pollen-image-preview"></div> -->
           </div>
-
+          <input type="hidden" id="order-id" name="order-id">
+          <input type="hidden" id="family-id" name="family-id">
+          <input type="hidden" id="genus-id" name="genus-id">
+          <input type="hidden" id="pollen-shape-id" name="shape-id">
+          <input type="hidden" id="pollen-surface-id" name="surface-id">
+          <input type="hidden" id="part-id" name="part-id">
+          <input type="hidden" id="aperture-type-id" name="aperture-id">
   
-              <div>
+              <div id="btn-cru">
                   <button class="btn_save_cr_flower">Lưu</button>
                     <button class="btn_update_cr_flower">Lưu1</button>
                     <button class="btn_exit_cr_flower">Thoát</button>
@@ -463,6 +469,6 @@ function capitalizeFirstLetter(event) {
 </script>
 <script src="./js/ad_showdt_fl.js"></script>
 <script src="./js/logout.js"></script>
-
+<script></script>
 </body>
 </html>

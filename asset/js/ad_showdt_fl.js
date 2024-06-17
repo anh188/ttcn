@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
                               <td>${flower.genus_id ? flower.genus_id.name : ''}</td>
                               <td>${flower.shape_id ? flower.shape_id.name : ''}</td>
                               <td>${flower.surface_id ? flower.surface_id.name : ''}</td>                          
-                              <td>${flower.part_id ? flower.part_id.name : ''}</td>
                               <td>${flower.aperture_id ? flower.aperture_id.name : ''}</td>
                               <td><img src="${flower.pollen_grain_images[0] || './asset/default_pollen.jpg'}" alt="${flower.name}" style="width: 110px; height: 120px; object-fit: cover"></td>
                               <td>${new Date(flower.updated_at).toLocaleString()}</td>

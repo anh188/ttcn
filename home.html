@@ -30,7 +30,9 @@
   </head>
 <body>
   <header class="header">
+
     <nav class="navbar">
+      <img class="logo" src="/asset/img/Logo-Hoc-Vien-Nong-Nghiep-Viet-Nam-VNUA.png" alt="">
       <a class="hd-nav-a" href="home.html">Trang chủ</a>
       <a class="hd-nav-a" href="contact.html">Giới thiệu</a>
       <!-- <a class="hd-nav-a" href="contact.html">Liên hệ</a> -->
@@ -56,9 +58,9 @@
 </div>
 
 
-<div id="content" class="fl_new bg">
-  <h1 class="container" style=" margin-top: 50px;">Các loài hoa mới được cập nhật</h1>
-  <div class="container" id="gallery">
+<div id="content" class="fl_new bg container">
+  <h1 style=" margin-top: 50px;">Các loài hoa mới được cập nhật</h1>
+  <div id="gallery">
     <!-- Các cây sẽ được thêm vào đây -->
   </div>
 </div>
@@ -212,7 +214,7 @@ window.addEventListener('scroll', function() {
   }
   
   if (window.scrollY > 150) {
-    header.style.backgroundColor = '#45532A';
+    header.style.backgroundColor = '#132043';
     header.style.animation = 'fadeIn 2s ease-in-out !important';
     const navLinks = document.querySelectorAll('.hd-nav-a');
   navLinks.forEach(link => {

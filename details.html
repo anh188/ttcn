@@ -6,11 +6,12 @@
   <title>Chi tiết thông tin cây</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="./css/detail.css">
   <link rel="stylesheet" href="./css/home.css">
   <!-- <link rel="stylesheet" href="/css/homepage.css"> -->
   <link rel="stylesheet" href="css/style.css">    
   <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/detail.css">
+
 
   <style>
     #searchContainer{
@@ -20,10 +21,12 @@
   </style>
 </head>
 <body>
-  <header class="header" style="background-color: #45532A;">
+  <header class="header" style="background-color: #132043;">
     <nav class="navbar">
-      <a href="home.html">Trang chủ</a>
-      <a href="contact.html">Giới thiệu</a>
+    <img class="logo" src="/asset/img/Logo-Hoc-Vien-Nong-Nghiep-Viet-Nam-VNUA.png" alt="">
+
+    <a class="hd-nav-a" href="home.html">Trang chủ</a>
+    <a class="hd-nav-a" href="contact.html">Giới thiệu</a>
       <!-- <a href="contact.html">Liên hệ</a> -->
       <!-- <a href="#">Contact</a> -->
     </nav>
@@ -41,16 +44,17 @@
       <div class="d-flex detail-content">
         <div class="img-lf-pl">
           <!-- <p><strong>Ảnh hoa:</strong></p> -->
-          <div class="flower-images-container">
-            <div class="swiper mySwiper2">
-              <div class="swiper-wrapper" id="flowerImagesWrapper"></div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-            </div>
-            <div thumbsSlider="" class="swiper mySwiper">
-              <div class="swiper-wrapper" id="flowerImagesThumbs"></div>
-            </div>
-          </div>        
+          <!-- Flower Images Container -->
+    <div class="flower-images-container">
+      <div class="swiper mySwiper2">
+          <div class="swiper-wrapper" id="flowerImagesWrapper"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+      </div>
+      <div thumbsSlider="" class="swiper mySwiper">
+          <div class="swiper-wrapper" id="flowerImagesThumbs"></div>
+      </div>
+  </div>      
           
           </div>
           <div class="if-rg">
@@ -63,7 +67,7 @@
             <p><strong>Chi:</strong> <span id="chi"></span></p>
             <p><strong>Hình dạng phấn hoa:</strong> <span id="hinhDangPhanHoa"></span></p>
             <p><strong>Bề mặt phấn hoa:</strong> <span id="beMatPhanHoa"></span></p>
-            <p><strong>Phần:</strong> <span id="phan"></span></p>
+            <!-- <p><strong>Phần:</strong> <span id="phan"></span></p> -->
             <p><strong>Loại khẩu độ:</strong> <span id="loaiDoKhau"></span></p>
             <!-- <p><strong>Link tải dữ liệu ảnh:</strong> <span id="linkdownload"></span></p> -->
             <p><strong>Link:
@@ -71,21 +75,29 @@
             </strong></p>
             <p><strong>Ảnh hạt phấn:</strong></p>
 
-            <div class="pollen-images-container">
-              <div class="swiper mySwiper2">
-                <div class="swiper-wrapper" id="pollenImagesWrapper"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-              </div>
-              <div thumbsSlider="" class="swiper mySwiper">
-                <div class="swiper-wrapper" id="pollenImagesThumbs"></div>
-              </div>
-            </div> 
+            <!-- Pollen Images Container -->
+    <div class="pollen-images-container">
+      <div class="swiper mySwiper2">
+          <div class="swiper-wrapper" id="pollenImagesWrapper"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+      </div>
+      <div thumbsSlider="" class="swiper mySwiper">
+          <div class="swiper-wrapper" id="pollenImagesThumbs"></div>
+      </div>
+  </div>
             <!-- <a id="linkdownload" href="#" target="_blank">Download kho ảnh</a> -->
           </div>
       </div>
       
     </div>
+  </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <img id="modalImage" src="" alt="Modal Image">
+      </div>
   </div>
 
   <div id="footer">
@@ -115,5 +127,25 @@
   <!-- Initialize Swiper -->
   <script src="./js/home_fl_details.js"></script>
   <script src="js/home.js"></script>
+
+  <style>
+    a {
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+  color: inherit; /* Giữ màu sắc gốc của văn bản */
+}
+    a:hover {
+    color: white; /* Giữ màu sắc gốc của văn bản */
+
+    text-decoration: none !important; /* Loại bỏ gạch chân khi hover */
+    }
+    #linkdownload:hover{
+      color: blue;
+    }
+    #linkdownload{
+      font-weight: 500;
+      color: blue;
+    }
+  </style>
+
 </body>
 </html>

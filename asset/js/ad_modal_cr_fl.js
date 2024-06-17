@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
           });
               // // Xử lý dữ liệu phản hồi từ API (nếu cần)
               // console.log('Created successfully:', data);
-          //     const inputFields = document.querySelectorAll('.modal-input');
+          //     const inputFields = document.querySelectorAll('.modal-inpu t');
           // inputFields.forEach(field => {
           //     field.value = '';
           // });

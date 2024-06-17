@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/home_set.css">
     <!-- <link rel="stylesheet" href="./css/search.css"> -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -39,9 +40,13 @@
     </div>
       <!-- <a class="link-login" href="loginregister.html">Đăng nhập</a> -->
   </header>
-  <ul id="gallery">
-    <!-- Các mục hoa sẽ được thêm vào đây -->
-</ul>
+  <div class="container">
+    <h1 class="setnameh1">Bộ: <span class="setname"></span></h1>
+    <ul id="gallery">
+        <!-- Các mục hoa sẽ được thêm vào đây -->
+    </ul>
+  </div>
+  
   <script>
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -54,46 +59,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function renderFlowersBySet(setId) {
-        try {
-            const flowers = await fetchFlowersBySet(setId);
+    try {
+        const data = await fetchFlowersBySet(setId);
 
-            if (!Array.isArray(flowers)) {
-                console.error('Expected an array of flowers, but got:', flowers);
-                return;
-            }
+        if (!data || !Array.isArray(data.flowers)) {
+            console.error('Expected an array of flowers, but got:', data);
+            return;
+        }
 
-            const flowerList = document.getElementById('gallery');
-            if (!flowerList) {
-                console.error('Flower list element not found.');
-                return;
-            }
+        // Update the set name
+        const setNameElement = document.querySelector('.setname');
+        if (setNameElement) {
+            setNameElement.textContent = data.setName || 'Unknown Set';
+        } else {
+            console.error('Set name element not found.');
+            return;
+        }
 
-            flowerList.innerHTML = ''; // Xóa các mục danh sách hoa hiện có
+        const flowerList = document.getElementById('gallery');
+        if (!flowerList) {
+            console.error('Flower list element not found.');
+            return;
+        }
 
-            flowers.forEach(flower => {
-                const listItem = document.createElement('li');
+        flowerList.innerHTML = ''; // Clear existing flower list
 
-                // Hiển thị tên hoa
-                const nameElement = document.createElement('p');
-                nameElement.textContent = flower.name;
-                listItem.appendChild(nameElement);
+        data.flowers.forEach(flower => {
+            const listItem = document.createElement('li');
 
-                // Hiển thị hình ảnh hoa (nếu có)
-                  // Hiển thị hình ảnh hoa (nếu có)
+            // Display flower name
+            const nameElement = document.createElement('p');
+            nameElement.textContent = flower.name;
+            listItem.appendChild(nameElement);
+
+            // Display flower image (if available)
             if (flower.flower_images && flower.flower_images.length > 0) {
                 const imgElement = document.createElement('img');
-                const image = flower.flower_images[0]; // Lấy đường dẫn ảnh đầu tiên trong danh sách flower_images
-                imgElement.src = `http://localhost:3456/static/${image}`; // Gán đường dẫn cho src của ảnh
-                imgElement.alt = `${flower.name} Image`; // Alt cho ảnh (tùy chọn)
+                const image = flower.flower_images[0]; // Use the first image in the list
+                imgElement.src = `http://localhost:3456/static/${image}`; // Set image source
+                imgElement.alt = `${flower.name} Image`; // Set alt text
                 listItem.appendChild(imgElement);
             }
-                  flowerList.appendChild(listItem);
-            });
-        } catch (error) {
-            console.error('Error rendering flowers by set:', error);
-        }
-    }
 
+            flowerList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error rendering flowers by set:', error);
+    }
+}
     // Hàm fetchFlowersBySet để lấy dữ liệu hoa từ server
     async function fetchFlowersBySet(setId) {
         try {
